@@ -18,84 +18,15 @@ const IconWithAnimation = ({
   isExpanded: boolean,
   index: number 
 }) => {
-  // Анимации для разных иконок
-  const getAnimation = () => {
-    // Globe — лёгкое покачивание
-    if (Icon === Globe) {
-      return {
-        animate: isExpanded ? { 
-          rotate: [0, 5, -5, 0],
-          transition: { duration: 2, ease: "easeInOut", repeat: Infinity }
-        } : { rotate: 0 }
-      }
-    }
-    
-    // Bot — шевеление антенной
-    if (Icon === Bot) {
-      return {
-        animate: isExpanded ? { 
-          rotate: [0, 8, -8, 5, -5, 0],
-          transition: { duration: 1.5, ease: "easeInOut", repeat: Infinity }
-        } : { rotate: 0 }
-      }
-    }
-    
-    // Cog — вращение шестерёнки
-    if (Icon === Cog) {
-      return {
-        animate: isExpanded ? { 
-          rotate: 360,
-          transition: { duration: 3, ease: "linear", repeat: Infinity }
-        } : { rotate: 0 }
-      }
-    }
-    
-    // Brain — увеличение мозга внутри кружка
-    if (Icon === Brain) {
-      return {
-        animate: isExpanded ? { 
-          scale: [1, 1.2, 1],
-          transition: { duration: 1.5, ease: "easeInOut", repeat: Infinity }
-        } : { scale: 1 }
-      }
-    }
-    
-    // Rocket — просто улетает вверх
-    if (Icon === Rocket) {
-      return {
-        animate: isExpanded ? { 
-          y: [0, -50],
-          opacity: [1, 0],
-          transition: { duration: 1.5, ease: "easeOut" }
-        } : { y: 0, opacity: 1 }
-      }
-    }
-    
-    // Sparkles — премиальное мерцание
-    if (Icon === Sparkles) {
-      return {
-        animate: isExpanded ? { 
-          scale: [1, 1.1, 0.9, 1],
-          rotate: [0, 10, -10, 0],
-          transition: { duration: 2, ease: "easeInOut", repeat: Infinity }
-        } : { scale: 1, rotate: 0 }
-      }
-    }
-    
-    return {}
-  }
-
   // Ракета — просто улетает
   if (Icon === Rocket) {
     return (
       <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/15 text-accent overflow-hidden">
         <motion.div
           className="flex items-center justify-center"
-          animate={isExpanded ? {
-            y: [0, -50],
-            opacity: [1, 0],
-            transition: { duration: 1.5, ease: "easeOut" }
-          } : { y: 0, opacity: 1 }}
+          initial={{ y: 0, opacity: 1 }}
+          animate={isExpanded ? { y: -50, opacity: 0 } : { y: 0, opacity: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
         >
           <Icon className="h-6 w-6" />
         </motion.div>
@@ -103,16 +34,47 @@ const IconWithAnimation = ({
     )
   }
 
-  // Планета — простая иконка
+  // Cog — вращение шестерёнки
+  if (Icon === Cog) {
+    return (
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/15 text-accent">
+        <motion.div
+          className="flex items-center justify-center"
+          initial={{ rotate: 0 }}
+          animate={isExpanded ? { rotate: 360 } : { rotate: 0 }}
+          transition={{ duration: 3, ease: "linear", repeat: isExpanded ? Infinity : 0 }}
+        >
+          <Icon className="h-6 w-6" />
+        </motion.div>
+      </div>
+    )
+  }
+
+  // Brain — пульсация
+  if (Icon === Brain) {
+    return (
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/15 text-accent">
+        <motion.div
+          className="flex items-center justify-center"
+          initial={{ scale: 1 }}
+          animate={isExpanded ? { scale: [1, 1.2, 1] } : { scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeInOut", repeat: isExpanded ? Infinity : 0 }}
+        >
+          <Icon className="h-6 w-6" />
+        </motion.div>
+      </div>
+    )
+  }
+
+  // Globe — покачивание
   if (Icon === Globe) {
     return (
       <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/15 text-accent">
         <motion.div
           className="flex items-center justify-center"
-          animate={isExpanded ? { 
-            rotate: [0, 5, -5, 0],
-            transition: { duration: 2, ease: "easeInOut", repeat: Infinity }
-          } : { rotate: 0 }}
+          initial={{ rotate: 0 }}
+          animate={isExpanded ? { rotate: [0, 5, -5, 0] } : { rotate: 0 }}
+          transition={{ duration: 2, ease: "easeInOut", repeat: isExpanded ? Infinity : 0 }}
         >
           <Icon className="h-6 w-6" />
         </motion.div>
@@ -120,15 +82,42 @@ const IconWithAnimation = ({
     )
   }
 
-  // Стандартная иконка
+  // Bot — шевеление антенной
+  if (Icon === Bot) {
+    return (
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/15 text-accent">
+        <motion.div
+          className="flex items-center justify-center"
+          initial={{ rotate: 0 }}
+          animate={isExpanded ? { rotate: [0, 8, -8, 5, -5, 0] } : { rotate: 0 }}
+          transition={{ duration: 1.5, ease: "easeInOut", repeat: isExpanded ? Infinity : 0 }}
+        >
+          <Icon className="h-6 w-6" />
+        </motion.div>
+      </div>
+    )
+  }
+
+  // Sparkles — мерцание
+  if (Icon === Sparkles) {
+    return (
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/15 text-accent">
+        <motion.div
+          className="flex items-center justify-center"
+          initial={{ scale: 1, rotate: 0 }}
+          animate={isExpanded ? { scale: [1, 1.1, 0.9, 1], rotate: [0, 10, -10, 0] } : { scale: 1, rotate: 0 }}
+          transition={{ duration: 2, ease: "easeInOut", repeat: isExpanded ? Infinity : 0 }}
+        >
+          <Icon className="h-6 w-6" />
+        </motion.div>
+      </div>
+    )
+  }
+
+  // По умолчанию
   return (
     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/15 text-accent">
-      <motion.div
-        className="flex items-center justify-center"
-        {...getAnimation()}
-      >
-        <Icon className="h-6 w-6" />
-      </motion.div>
+      <Icon className="h-6 w-6" />
     </div>
   )
 }
