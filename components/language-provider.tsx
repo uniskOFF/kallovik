@@ -4,9 +4,82 @@ import { createContext, useContext, useState, useCallback, type ReactNode } from
 
 export type Lang = 'ru' | 'en'
 
-type Dict = typeof translations.ru
+type Dict = {
+  nav: {
+    home: string
+    services: string
+    cases: string
+    about: string
+    contacts: string
+    cta: string
+  }
+  hero: {
+    badge: string
+    title1: string
+    title2: string
+    title3: string
+    subtitle: string
+    primary: string
+    secondary: string
+    stats: { value: string; label: string }[]
+    cards: {
+      websites: string
+      bots: string
+      automation: string
+      ai: string
+      cloud: string
+      analytics: string
+    }
+  }
+  services: {
+    title: string
+    subtitle: string
+    info: string
+    items: { title: string; desc: string; tip: string }[]
+  }
+  benefits: {
+    title: string
+    subtitle: string
+    items: { title: string; desc: string }[]
+  }
+  about: {
+    title: string
+    subtitle: string
+    items: { title: string; desc: string }[]
+  }
+  portfolio: {
+    title: string
+    subtitle: string
+    filters: string[]
+    view: string
+    items: { title: string; cat: string; tag: string }[]
+  }
+  contact: {
+    title: string
+    subtitle: string
+    name: string
+    phone: string
+    telegram: string
+    email: string
+    project: string
+    submit: string
+    success: string
+    infoTitle: string
+    phoneLabel: string
+    emailLabel: string
+    tgLabel: string
+    hoursLabel: string
+    hoursValue: string
+  }
+  footer: {
+    tagline: string
+    rights: string
+    nav: string
+    contacts: string
+  }
+}
 
-const translations = {
+const translations: Record<Lang, Dict> = {
   ru: {
     nav: {
       home: 'Главная',
@@ -261,7 +334,7 @@ const translations = {
       contacts: 'Contacts',
     },
   },
-} as const
+}
 
 type LanguageContextType = {
   lang: Lang
