@@ -3,6 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: ['main']
+  workflow_dispatch:  # Позволяет запускать вручную
 
 jobs:
   build-and-deploy:
@@ -14,12 +15,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22  # ← ИЗМЕНЕНО: c 20 на 22
+          node-version: '22.11.0'  # Фиксированная стабильная версия
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4  # Обновлено с v2 на v4
         with:
-          version: 8
+          version: 9  # Обновлено с 8 на 9
 
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
@@ -28,7 +29,7 @@ jobs:
         run: pnpm build
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4  # Обновлено с v3 на v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
