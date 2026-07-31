@@ -25,7 +25,7 @@ const IconWithAnimation = ({
       return {
         animate: isExpanded ? { 
           rotate: [0, 5, -5, 0],
-          transition: { duration: 2, ease: "easeInOut", repeat: Infinity }
+          transition: { duration: 2, ease: [0.42, 0, 0.58, 1], repeat: Infinity }
         } : { rotate: 0 }
       }
     }
@@ -35,7 +35,7 @@ const IconWithAnimation = ({
       return {
         animate: isExpanded ? { 
           rotate: [0, 8, -8, 5, -5, 0],
-          transition: { duration: 1.5, ease: "easeInOut", repeat: Infinity }
+          transition: { duration: 1.5, ease: [0.42, 0, 0.58, 1], repeat: Infinity }
         } : { rotate: 0 }
       }
     }
@@ -55,7 +55,7 @@ const IconWithAnimation = ({
       return {
         animate: isExpanded ? { 
           scale: [1, 1.2, 1],
-          transition: { duration: 1.5, ease: "easeInOut", repeat: Infinity }
+          transition: { duration: 1.5, ease: [0.42, 0, 0.58, 1], repeat: Infinity }
         } : { scale: 1 }
       }
     }
@@ -66,10 +66,7 @@ const IconWithAnimation = ({
         animate: isExpanded ? { 
           y: [0, -50],
           opacity: [1, 0],
-          transition: { 
-            duration: 1.5, 
-            ease: "easeOut"
-          }
+          transition: { duration: 1.5, ease: [0.42, 0, 0.58, 1] }
         } : { y: 0, opacity: 1 }
       }
     }
@@ -80,12 +77,7 @@ const IconWithAnimation = ({
         animate: isExpanded ? { 
           scale: [1, 1.1, 0.9, 1],
           rotate: [0, 10, -10, 0],
-          transition: { 
-            duration: 2, 
-            ease: "easeInOut", 
-            repeat: Infinity,
-            repeatType: "mirror" as const
-          }
+          transition: { duration: 2, ease: [0.42, 0, 0.58, 1], repeat: Infinity }
         } : { scale: 1, rotate: 0 }
       }
     }
@@ -102,10 +94,7 @@ const IconWithAnimation = ({
           animate={isExpanded ? {
             y: [0, -50],
             opacity: [1, 0],
-            transition: { 
-              duration: 1.5, 
-              ease: "easeOut"
-            }
+            transition: { duration: 1.5, ease: [0.42, 0, 0.58, 1] }
           } : { y: 0, opacity: 1 }}
         >
           <Icon className="h-6 w-6" />
@@ -122,7 +111,7 @@ const IconWithAnimation = ({
           className="flex items-center justify-center"
           animate={isExpanded ? { 
             rotate: [0, 5, -5, 0],
-            transition: { duration: 2, ease: "easeInOut", repeat: Infinity }
+            transition: { duration: 2, ease: [0.42, 0, 0.58, 1], repeat: Infinity }
           } : { rotate: 0 }}
         >
           <Icon className="h-6 w-6" />
@@ -211,10 +200,7 @@ export function Services() {
                       {item.title}
                     </h3>
 
-                    {/* ✨ УЛУЧШЕННАЯ ЛИНИЯ — заметнее, длиннее, с правильным отступом */}
-                    <div className="relative mt-3 h-[2px] w-16 bg-white/15 transition-all duration-700 group-hover:w-24 group-hover:bg-accent/50" />
-
-                    <div className="relative mt-4 min-h-[4rem] overflow-hidden">
+                    <div className="relative mt-2 min-h-[4rem] overflow-hidden">
                       <AnimatePresence mode="wait">
                         {isExpanded ? (
                           <motion.div
