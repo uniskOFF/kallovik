@@ -5,8 +5,8 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
-  // basePath: '/kallovik',  // ← ЗАКОММЕНТИРУЙ ЭТУ СТРОКУ
-  // assetPrefix: '/kallovik/', // ← И ЭТУ ТОЖЕ
+  basePath: '/kallovik',
+  assetPrefix: '/kallovik/',
 }
 
 export default nextConfig
