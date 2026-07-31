@@ -25,7 +25,7 @@ const IconWithAnimation = ({
       return {
         animate: isExpanded ? { 
           rotate: [0, 5, -5, 0],
-          transition: { duration: 2, ease: [0.42, 0, 0.58, 1], repeat: Infinity }
+          transition: { duration: 2, ease: "easeInOut", repeat: Infinity }
         } : { rotate: 0 }
       }
     }
@@ -35,7 +35,7 @@ const IconWithAnimation = ({
       return {
         animate: isExpanded ? { 
           rotate: [0, 8, -8, 5, -5, 0],
-          transition: { duration: 1.5, ease: [0.42, 0, 0.58, 1], repeat: Infinity }
+          transition: { duration: 1.5, ease: "easeInOut", repeat: Infinity }
         } : { rotate: 0 }
       }
     }
@@ -55,7 +55,7 @@ const IconWithAnimation = ({
       return {
         animate: isExpanded ? { 
           scale: [1, 1.2, 1],
-          transition: { duration: 1.5, ease: [0.42, 0, 0.58, 1], repeat: Infinity }
+          transition: { duration: 1.5, ease: "easeInOut", repeat: Infinity }
         } : { scale: 1 }
       }
     }
@@ -66,7 +66,7 @@ const IconWithAnimation = ({
         animate: isExpanded ? { 
           y: [0, -50],
           opacity: [1, 0],
-          transition: { duration: 1.5, ease: [0.42, 0, 0.58, 1] }
+          transition: { duration: 1.5, ease: "easeOut" }
         } : { y: 0, opacity: 1 }
       }
     }
@@ -77,7 +77,7 @@ const IconWithAnimation = ({
         animate: isExpanded ? { 
           scale: [1, 1.1, 0.9, 1],
           rotate: [0, 10, -10, 0],
-          transition: { duration: 2, ease: [0.42, 0, 0.58, 1], repeat: Infinity }
+          transition: { duration: 2, ease: "easeInOut", repeat: Infinity }
         } : { scale: 1, rotate: 0 }
       }
     }
@@ -94,7 +94,7 @@ const IconWithAnimation = ({
           animate={isExpanded ? {
             y: [0, -50],
             opacity: [1, 0],
-            transition: { duration: 1.5, ease: [0.42, 0, 0.58, 1] }
+            transition: { duration: 1.5, ease: "easeOut" }
           } : { y: 0, opacity: 1 }}
         >
           <Icon className="h-6 w-6" />
@@ -111,7 +111,7 @@ const IconWithAnimation = ({
           className="flex items-center justify-center"
           animate={isExpanded ? { 
             rotate: [0, 5, -5, 0],
-            transition: { duration: 2, ease: [0.42, 0, 0.58, 1], repeat: Infinity }
+            transition: { duration: 2, ease: "easeInOut", repeat: Infinity }
           } : { rotate: 0 }}
         >
           <Icon className="h-6 w-6" />
