@@ -1,0 +1,197 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), 'Geist Fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-glass: var(--glass);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+  --radius-2xl: 2rem;
+}
+
+:root {
+  color-scheme: dark;
+  --background: #05080f;
+  --background-secondary: #0a0f1a;
+  --foreground: #ffffff;
+  --secondary: #0f1728;
+  --secondary-foreground: #ffffff;
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
+  --muted-foreground: #94a3b8;
+  --glass: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.06);
+  --ring: #3b82f6;
+}
+
+/* 🌟 ТЕХНОЛОГИЧНЫЙ И ГЛУБОКИЙ ФОН */
+html {
+  background: var(--background);
+  min-height: 100vh;
+}
+
+body {
+  background: 
+    var(--background),
+    radial-gradient(
+      ellipse 70% 50% at 50% 20%,
+      rgba(59, 130, 246, 0.12) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 40% 30% at 10% 80%,
+      rgba(99, 102, 241, 0.06) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 40% 30% at 90% 70%,
+      rgba(139, 92, 246, 0.05) 0%,
+      transparent 60%
+    );
+  
+  color: var(--foreground);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  background-blend-mode: normal, normal, normal, normal;
+}
+
+/* ✨ 3D-сетка */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 70% 70% at center, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at center, black 30%, transparent 70%);
+}
+
+/* 🌌 ПАРЯЩИЕ СВЕТОВЫЕ СФЕРЫ */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(circle at 15% 25%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 85% 35%, rgba(99, 102, 241, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 20% 75%, rgba(139, 92, 246, 0.05) 0%, transparent 35%),
+    radial-gradient(circle at 75% 85%, rgba(59, 130, 246, 0.07) 0%, transparent 45%);
+  animation: floatGlow 12s ease-in-out infinite alternate;
+}
+
+@keyframes floatGlow {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.8;
+  }
+  33% {
+    transform: translate(2%, -2%) scale(1.05);
+    opacity: 1;
+  }
+  66% {
+    transform: translate(-1%, 3%) scale(0.95);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(1%, -1%) scale(1.02);
+    opacity: 1;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+  ::selection {
+    background-color: rgba(59, 130, 246, 0.3);
+    color: #ffffff;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .animate-float {
+    animation: floatY var(--float-duration, 6s) ease-in-out infinite;
+    animation-delay: var(--float-delay, 0s);
+  }
+  .animate-pulse-line {
+    animation: pulseLine 4s ease-in-out infinite;
+  }
+}
+
+@keyframes floatY {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(var(--float-distance, -10px));
+  }
+}
+
+@keyframes pulseLine {
+  0%, 100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* 🔥 ПРЕМИАЛЬНОЕ ПЕРЕЛИВАНИЕ ТЕКСТА */
+@keyframes gradientShine {
+  0% {
+    background-position: 0% 50%;
+    filter: brightness(1);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: brightness(1.2);
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: brightness(1);
+  }
+}
+
+.animate-gradient-shine {
+  background-size: 300% 300% !important;
+  animation: gradientShine 4s ease-in-out infinite;
+}
