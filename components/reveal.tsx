@@ -31,21 +31,30 @@ export function Reveal({
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once, amount })
 
+  const getTransform = () => {
+    if (direction === 'up') return `translateY(${distance}px)`
+    if (direction === 'down') return `translateY(-${distance}px)`
+    if (direction === 'left') return `translateX(${distance}px)`
+    if (direction === 'right') return `translateX(-${distance}px)`
+    if (direction === 'scale' || direction === 'blur') return `scale(0.92)`
+    return 'none'
+  }
+
+  const hiddenStyles = {
+    opacity: 0,
+    transform: getTransform(),
+    filter: direction === 'blur' ? `blur(${blur}px)` : 'none',
+  }
+
+  const visibleStyles = {
+    opacity: 1,
+    transform: 'none',
+    filter: 'none',
+  }
+
   const variants = {
-    hidden: {
-      opacity: 0,
-      y: direction === 'up' ? distance : direction === 'down' ? -distance : 0,
-      x: direction === 'left' ? distance : direction === 'right' ? -distance : 0,
-      scale: direction === 'scale' || direction === 'blur' ? 0.92 : 1,
-      filter: direction === 'blur' ? `blur(${blur}px)` : 'blur(0px)',
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      x: 0,
-      scale: 1,
-      filter: 'blur(0px)',
-    },
+    hidden: hiddenStyles,
+    visible: visibleStyles,
   }
 
   const transition = {
