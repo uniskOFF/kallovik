@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useScroll, useTransform, useSpring, useMotionValue, useMotionTemplate, useInView } from 'motion/react'
-import { ArrowRight, Sparkles, MousePointer2 } from 'lucide-react'
+import { ArrowRight, MousePointer2 } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
 import { HeroEcosystem } from '@/components/hero-ecosystem'
 import { useRef, useEffect, useState } from 'react'
@@ -110,14 +110,7 @@ export function Hero() {
 
   const titleVariants = {
     hidden: { opacity: 0, y: 80 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 1.8,
-        ease: "easeOut",
-      },
-    },
+    show: { opacity: 1, y: 0 },
   }
 
   const wordVariants = {
@@ -136,28 +129,12 @@ export function Hero() {
 
   const subtitleVariants = {
     hidden: { opacity: 0, y: 30 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 1.2,
-        delay: 0.6,
-        ease: "easeOut",
-      },
-    },
+    show: { opacity: 1, y: 0 },
   }
 
   const buttonVariants = {
     hidden: { opacity: 0, y: 20 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        delay: 0.8,
-        ease: "easeOut",
-      },
-    },
+    show: { opacity: 1, y: 0 },
   }
 
   return (
@@ -226,6 +203,7 @@ export function Hero() {
               variants={titleVariants}
               initial="hidden"
               animate={isInView ? 'show' : 'hidden'}
+              transition={{ duration: 1.8, ease: "easeOut" }}
               className="relative"
             >
               <motion.div
@@ -285,6 +263,7 @@ export function Hero() {
                 variants={subtitleVariants}
                 initial="hidden"
                 animate={isInView ? 'show' : 'hidden'}
+                transition={{ duration: 1.2, delay: 0.6, ease: "easeOut" }}
                 className="mt-8 max-w-lg"
               >
                 <p className="text-pretty text-base leading-relaxed text-white/40 sm:text-lg">
@@ -296,6 +275,7 @@ export function Hero() {
                 variants={buttonVariants}
                 initial="hidden"
                 animate={isInView ? 'show' : 'hidden'}
+                transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
                 className="mt-12 flex flex-wrap items-center gap-4"
               >
                 <motion.a
@@ -335,6 +315,7 @@ export function Hero() {
                 variants={buttonVariants}
                 initial="hidden"
                 animate={isInView ? 'show' : 'hidden'}
+                transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
                 className="mt-16 flex items-center gap-16 border-t border-white/5 pt-10"
               >
                 {t.hero.stats.map((s, i) => (
