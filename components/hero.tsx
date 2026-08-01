@@ -287,7 +287,7 @@ export function Hero() {
                 whileTap={{ scale: 0.97 }}
               >
                 <span className="relative z-10 flex items-center gap-2.5">
-                  Оставить заявку
+                  {t.hero.primary}
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
                 </span>
                 <motion.span
