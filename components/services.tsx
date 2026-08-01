@@ -18,14 +18,14 @@ const IconWithAnimation = ({
 }) => {
   if (Icon === Rocket) {
     return (
-      <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-white/5 text-white/80 overflow-visible">
+      <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80 overflow-visible">
         <motion.div
           className="flex items-center justify-center"
           initial={{ y: 0, opacity: 1 }}
           animate={isExpanded ? { y: -40, opacity: 0 } : { y: 0, opacity: 1 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <Icon className="h-6 w-6" />
+          <Icon className="h-5 w-5" />
         </motion.div>
         {isExpanded && (
           <motion.div
@@ -41,14 +41,14 @@ const IconWithAnimation = ({
 
   if (Icon === Cog) {
     return (
-      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/5 text-white/80">
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80">
         <motion.div
           className="flex items-center justify-center"
           initial={{ rotate: 0 }}
           animate={isExpanded ? { rotate: 360 } : { rotate: 0 }}
           transition={{ duration: 4, ease: "linear", repeat: isExpanded ? Infinity : 0 }}
         >
-          <Icon className="h-6 w-6" />
+          <Icon className="h-5 w-5" />
         </motion.div>
       </div>
     )
@@ -56,14 +56,14 @@ const IconWithAnimation = ({
 
   if (Icon === Brain) {
     return (
-      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/5 text-white/80">
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80">
         <motion.div
           className="flex items-center justify-center"
           initial={{ scale: 1 }}
           animate={isExpanded ? { scale: [1, 1.15, 1] } : { scale: 1 }}
           transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1], repeat: isExpanded ? Infinity : 0 }}
         >
-          <Icon className="h-6 w-6" />
+          <Icon className="h-5 w-5" />
         </motion.div>
       </div>
     )
@@ -71,14 +71,14 @@ const IconWithAnimation = ({
 
   if (Icon === Globe) {
     return (
-      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/5 text-white/80">
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80">
         <motion.div
           className="flex items-center justify-center"
           initial={{ rotate: 0 }}
           animate={isExpanded ? { rotate: [0, 8, -8, 5, -5, 0] } : { rotate: 0 }}
           transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1], repeat: isExpanded ? Infinity : 0 }}
         >
-          <Icon className="h-6 w-6" />
+          <Icon className="h-5 w-5" />
         </motion.div>
       </div>
     )
@@ -86,14 +86,14 @@ const IconWithAnimation = ({
 
   if (Icon === Bot) {
     return (
-      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/5 text-white/80">
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80">
         <motion.div
           className="flex items-center justify-center"
           initial={{ rotate: 0 }}
           animate={isExpanded ? { rotate: [0, 12, -10, 8, -6, 0] } : { rotate: 0 }}
           transition={{ duration: 2, ease: [0.16, 1, 0.3, 1], repeat: isExpanded ? Infinity : 0 }}
         >
-          <Icon className="h-6 w-6" />
+          <Icon className="h-5 w-5" />
         </motion.div>
       </div>
     )
@@ -101,22 +101,22 @@ const IconWithAnimation = ({
 
   if (Icon === Sparkles) {
     return (
-      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/5 text-white/80">
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80">
         <motion.div
           className="flex items-center justify-center"
           initial={{ scale: 1, rotate: 0 }}
           animate={isExpanded ? { scale: [1, 1.12, 0.88, 1], rotate: [0, 15, -15, 0] } : { scale: 1, rotate: 0 }}
           transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1], repeat: isExpanded ? Infinity : 0 }}
         >
-          <Icon className="h-6 w-6" />
+          <Icon className="h-5 w-5" />
         </motion.div>
       </div>
     )
   }
 
   return (
-    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/5 text-white/80">
-      <Icon className="h-6 w-6" />
+    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80">
+      <Icon className="h-5 w-5" />
     </div>
   )
 }
@@ -204,7 +204,7 @@ export function Services() {
                       <button
                         type="button"
                         onClick={() => toggleExpand(i)}
-                        className="relative flex h-10 w-10 items-center justify-center rounded-full border border-white/8 text-white/40 transition-all duration-500 hover:border-white/20 hover:text-white/80"
+                        className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/8 text-white/40 transition-all duration-500 hover:border-white/20 hover:text-white/80"
                         aria-label={isExpanded ? 'Свернуть' : 'Подробнее'}
                       >
                         {isExpanded ? (
