@@ -208,7 +208,7 @@ export function Services() {
                       {item.title}
                     </h3>
 
-                    <div className="relative mt-4 flex-1 min-h-[4.5rem] overflow-hidden">
+                    <div className="relative mt-3 flex-1">
                       <AnimatePresence mode="wait">
                         {isExpanded ? (
                           <motion.div
@@ -217,7 +217,6 @@ export function Services() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -16 }}
                             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                            className="absolute inset-0"
                           >
                             <p className="text-base leading-relaxed text-white/60">
                               {item.tip}
