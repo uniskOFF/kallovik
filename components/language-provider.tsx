@@ -1,85 +1,18 @@
 'use client'
 
-import { createContext, useContext, useState, useCallback, type ReactNode } from 'react'
+import { createContext, useContext, useState, useCallback, useMemo, useEffect, useRef, type ReactNode } from 'react'
 
 export type Lang = 'ru' | 'en'
 
-type Dict = {
-  nav: {
-    home: string
-    services: string
-    cases: string
-    about: string
-    contacts: string
-    cta: string
-  }
-  hero: {
-    badge: string
-    title1: string
-    title2: string
-    title3: string
-    subtitle: string
-    primary: string
-    secondary: string
-    stats: { value: string; label: string }[]
-    cards: {
-      websites: string
-      bots: string
-      automation: string
-      ai: string
-      cloud: string
-      analytics: string
-    }
-  }
-  services: {
-    title: string
-    subtitle: string
-    info: string
-    items: { title: string; desc: string; tip: string }[]
-  }
-  benefits: {
-    title: string
-    subtitle: string
-    items: { title: string; desc: string }[]
-  }
-  about: {
-    title: string
-    subtitle: string
-    items: { title: string; desc: string }[]
-  }
-  portfolio: {
-    title: string
-    subtitle: string
-    filters: string[]
-    view: string
-    items: { title: string; cat: string; tag: string }[]
-  }
-  contact: {
-    title: string
-    subtitle: string
-    name: string
-    phone: string
-    telegram: string
-    email: string
-    project: string
-    submit: string
-    success: string
-    infoTitle: string
-    phoneLabel: string
-    emailLabel: string
-    tgLabel: string
-    hoursLabel: string
-    hoursValue: string
-  }
-  footer: {
-    tagline: string
-    rights: string
-    nav: string
-    contacts: string
-  }
-}
+export type TranslationKey = keyof typeof translations.ru
 
-const translations: Record<Lang, Dict> = {
+export type TranslationValue = string | { [key: string]: TranslationValue } | TranslationValue[]
+
+export type TranslationDict = typeof translations.ru
+
+const STORAGE_KEY = 'aesbau-lang'
+
+const translations = {
   ru: {
     nav: {
       home: 'Главная',
@@ -87,7 +20,7 @@ const translations: Record<Lang, Dict> = {
       cases: 'Кейсы',
       about: 'О нас',
       contacts: 'Связаться',
-      cta: 'Получить консультацию',
+      cta: 'Оставить заявку',
     },
     hero: {
       badge: 'Цифровые решения нового поколения',
@@ -96,7 +29,7 @@ const translations: Record<Lang, Dict> = {
       title3: 'вашего бизнеса',
       subtitle:
         'AESBAU Labs создаёт сайты, Telegram-ботов, автоматизацию и AI-интеграции. Помогаем бизнесу расти и оставаться на шаг впереди.',
-      primary: 'Получить консультацию',
+      primary: 'Оставить заявку',
       secondary: 'Наши проекты',
       stats: [
         { value: '120+', label: 'Проектов запущено' },
@@ -170,7 +103,7 @@ const translations: Record<Lang, Dict> = {
       ],
     },
     portfolio: {
-      title: 'Избранные кейсы',
+      title: 'Наши работы',
       subtitle: 'Реальные цифровые продукты, созданные командой AESBAU Labs.',
       filters: ['Все', 'Сайты', 'Боты', 'Автоматизация', 'AI'],
       view: 'Смотреть кейс',
@@ -214,7 +147,7 @@ const translations: Record<Lang, Dict> = {
       cases: 'Cases',
       about: 'About',
       contacts: 'Contact',
-      cta: 'Get a consultation',
+      cta: 'Leave a request',
     },
     hero: {
       badge: 'Next-generation digital solutions',
@@ -223,7 +156,7 @@ const translations: Record<Lang, Dict> = {
       title3: 'of your business',
       subtitle:
         'AESBAU Labs builds websites, Telegram bots, automation and AI integrations. We help businesses grow and stay one step ahead.',
-      primary: 'Get a consultation',
+      primary: 'Leave a request',
       secondary: 'Our projects',
       stats: [
         { value: '120+', label: 'Projects launched' },
@@ -297,7 +230,7 @@ const translations: Record<Lang, Dict> = {
       ],
     },
     portfolio: {
-      title: 'Featured cases',
+      title: 'Our works',
       subtitle: 'Real digital products built by the AESBAU Labs team.',
       filters: ['All', 'Websites', 'Bots', 'Automation', 'AI'],
       view: 'View case',
@@ -318,7 +251,7 @@ const translations: Record<Lang, Dict> = {
       telegram: 'Telegram',
       email: 'Email',
       project: 'Project description',
-      submit: 'Send request',
+      submit: 'Leave a request',
       success: 'Thank you! We will get back to you shortly.',
       infoTitle: 'Contacts',
       phoneLabel: 'Phone',
@@ -334,29 +267,89 @@ const translations: Record<Lang, Dict> = {
       contacts: 'Contacts',
     },
   },
-}
+} as const
 
 type LanguageContextType = {
   lang: Lang
-  setLang: (l: Lang) => void
+  setLang: (lang: Lang) => void
   toggle: () => void
-  t: Dict
+  t: TranslationDict
 }
 
 const LanguageContext = createContext<LanguageContextType | null>(null)
 
+function getInitialLanguage(): Lang {
+  if (typeof window === 'undefined') return 'ru'
+
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY) as Lang | null
+    if (stored === 'ru' || stored === 'en') return stored
+
+    const browserLang = navigator.language.split('-')[0]
+    if (browserLang === 'ru' || browserLang === 'en') return browserLang as Lang
+  } catch {
+    // ignore
+  }
+
+  return 'ru'
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>('ru')
-  const toggle = useCallback(() => setLang((p) => (p === 'ru' ? 'en' : 'ru')), [])
+  const [lang, setLangState] = useState<Lang>(() => getInitialLanguage())
+  const isFirstRender = useRef(true)
+  const previousLang = useRef<Lang>(lang)
+
+  const setLang = useCallback((newLang: Lang) => {
+    if (newLang === previousLang.current) return
+    previousLang.current = newLang
+    setLangState(newLang)
+    try {
+      localStorage.setItem(STORAGE_KEY, newLang)
+    } catch {
+      // ignore
+    }
+  }, [])
+
+  const toggle = useCallback(() => {
+    setLang(lang === 'ru' ? 'en' : 'ru')
+  }, [lang, setLang])
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+
+    try {
+      localStorage.setItem(STORAGE_KEY, lang)
+    } catch {
+      // ignore
+    }
+  }, [lang])
+
+  const value = useMemo<LanguageContextType>(
+    () => ({
+      lang,
+      setLang,
+      toggle,
+      t: translations[lang],
+    }),
+    [lang, setLang, toggle]
+  )
+
   return (
-    <LanguageContext.Provider value={{ lang, setLang, toggle, t: translations[lang] }}>
+    <LanguageContext.Provider value={value}>
       {children}
     </LanguageContext.Provider>
   )
 }
 
 export function useLanguage() {
-  const ctx = useContext(LanguageContext)
-  if (!ctx) throw new Error('useLanguage must be used within LanguageProvider')
-  return ctx
+  const context = useContext(LanguageContext)
+  if (!context) {
+    throw new Error('useLanguage must be used within a LanguageProvider')
+  }
+  return context
 }
+
+export { translations }
