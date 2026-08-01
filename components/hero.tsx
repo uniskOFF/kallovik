@@ -274,7 +274,7 @@ export function Hero() {
             >
               <motion.a
                 href="#contacts"
-                className="group relative overflow-hidden rounded-full bg-white px-8 py-3.5 text-sm font-medium text-[#05080f] transition-all duration-500 hover:shadow-[0_0_60px_-12px_rgba(255,255,255,0.15)]"
+                className="group relative overflow-hidden rounded-full bg-accent px-8 py-3.5 text-sm font-medium text-white shadow-[0_8px_30px_-8px_rgba(59,130,246,0.5)] transition-all duration-500 hover:shadow-[0_12px_40px_-8px_rgba(59,130,246,0.7)] hover:scale-[1.02]"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -283,7 +283,7 @@ export function Hero() {
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
                 </span>
                 <motion.span
-                  className="absolute inset-0 -z-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0"
+                  className="absolute inset-0 -z-0 bg-gradient-to-r from-accent/0 via-white/20 to-accent/0"
                   initial={{ x: '-100%' }}
                   whileHover={{ x: '100%' }}
                   transition={{ duration: 0.6 }}
