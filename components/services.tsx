@@ -16,7 +16,6 @@ const IconWithAnimation = ({
   icon: LucideIcon, 
   isExpanded: boolean,
 }) => {
-  // Все иконки теперь имеют строго одинаковый размер и положение
   const iconSize = "h-5 w-5"
   
   if (Icon === Rocket) {
@@ -190,4 +189,76 @@ export function Services() {
                   transition={{ duration: 0.4 }}
                 >
                   <div className="relative flex h-full flex-col p-8 sm:p-10">
-                   
+                    <div className="flex items-start justify-between">
+                      <IconWithAnimation 
+                        icon={Icon} 
+                        isExpanded={isExpanded}
+                      />
+                    </div>
+
+                    <h3 className="relative mt-6 text-2xl font-light tracking-[-0.02em] text-white/90">
+                      {item.title}
+                    </h3>
+
+                    <div className="relative mt-4 flex-1 min-h-[4.5rem] overflow-hidden">
+                      <AnimatePresence mode="wait">
+                        {isExpanded ? (
+                          <motion.div
+                            key="tip"
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -16 }}
+                            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                            className="absolute inset-0"
+                          >
+                            <p className="text-base leading-relaxed text-white/60">
+                              {item.tip}
+                            </p>
+                          </motion.div>
+                        ) : (
+                          <motion.div
+                            key="desc"
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -16 }}
+                            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                          >
+                            <p className="text-base leading-relaxed text-white/40">
+                              {item.desc}
+                            </p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+
+                    <motion.button
+                      type="button"
+                      onClick={() => toggleExpand(i)}
+                      className={`mt-6 flex items-center gap-2 text-sm font-light transition-all duration-500 ${
+                        isExpanded 
+                          ? 'text-white/30 hover:text-white/60' 
+                          : 'text-white/40 hover:text-white/80'
+                      }`}
+                      whileHover={{ x: isExpanded ? 0 : 4 }}
+                    >
+                      {isExpanded ? (
+                        'Свернуть'
+                      ) : (
+                        <>
+                          Узнать больше
+                          <ArrowRight className="h-4 w-4" />
+                        </>
+                      )}
+                    </motion.button>
+
+                    <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-accent/5 blur-[100px] opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+                  </div>
+                </motion.div>
+              </motion.div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
