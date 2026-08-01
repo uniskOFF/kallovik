@@ -42,11 +42,6 @@ export function Reveal({
       x: direction === 'left' ? distance : direction === 'right' ? -distance : 0,
       scale: direction === 'scale' || direction === 'blur' ? 0.92 : 1,
       filter: direction === 'blur' ? `blur(${blur}px)` : 'blur(0px)',
-      transition: {
-        duration,
-        delay,
-        ease: [0.16, 1, 0.3, 1],
-      },
     },
     visible: {
       opacity: 1,
@@ -54,14 +49,6 @@ export function Reveal({
       x: 0,
       scale: 1,
       filter: 'blur(0px)',
-      transition: {
-        duration,
-        delay,
-        ease: [0.16, 1, 0.3, 1],
-        staggerChildren,
-        staggerDirection: staggerDirection === 'forward' ? 1 : -1,
-        delayChildren: delay,
-      },
     },
   }
 
@@ -72,11 +59,6 @@ export function Reveal({
       x: direction === 'left' ? distance : direction === 'right' ? -distance : 0,
       scale: direction === 'scale' || direction === 'blur' ? 0.95 : 1,
       filter: direction === 'blur' ? `blur(${blur}px)` : 'blur(0px)',
-      transition: {
-        duration: 0.8,
-        delay,
-        ease: [0.16, 1, 0.3, 1],
-      },
     },
     visible: {
       opacity: 1,
@@ -84,18 +66,30 @@ export function Reveal({
       x: 0,
       scale: 1,
       filter: 'blur(0px)',
-      transition: {
-        duration: 0.8,
-        delay,
-        ease: [0.16, 1, 0.3, 1],
-        staggerChildren,
-        staggerDirection: staggerDirection === 'forward' ? 1 : -1,
-        delayChildren: delay,
-      },
     },
   }
 
   const finalVariants = type === 'spring' ? springVariants : variants
+
+  const transition = type === 'spring'
+    ? {
+        type: 'spring',
+        stiffness: 60,
+        damping: 25,
+        mass: 1,
+        delay,
+        staggerChildren,
+        staggerDirection: staggerDirection === 'forward' ? 1 : -1,
+        delayChildren: delay,
+      }
+    : {
+        duration,
+        delay,
+        ease: 'easeOut',
+        staggerChildren,
+        staggerDirection: staggerDirection === 'forward' ? 1 : -1,
+        delayChildren: delay,
+      }
 
   return (
     <motion.div
@@ -104,6 +98,7 @@ export function Reveal({
       initial="hidden"
       animate={isInView ? 'visible' : 'hidden'}
       variants={finalVariants}
+      transition={transition}
       style={{ willChange: 'transform, opacity' }}
     >
       {children}
