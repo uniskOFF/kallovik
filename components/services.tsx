@@ -193,7 +193,7 @@ export function Services() {
 
                   <div className="absolute inset-0 rounded-3xl border border-white/[0.04] transition-all duration-700 group-hover:border-accent/20" />
 
-                  <div className="relative flex h-full flex-col p-8 sm:p-10">
+                  <div className="relative flex flex-col p-8 sm:p-10">
                     <div className="flex items-start justify-between">
                       <div className="relative">
                         <div className="absolute inset-0 rounded-full bg-accent/10 blur-xl opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
@@ -208,7 +208,7 @@ export function Services() {
                       {item.title}
                     </h3>
 
-                    <div className="relative mt-3 flex-1">
+                    <div className="relative mt-3">
                       <AnimatePresence mode="wait">
                         {isExpanded ? (
                           <motion.div
