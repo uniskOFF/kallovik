@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { Send, Check, Mail, MessageCircle, Sparkles, type LucideIcon } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
-import { Reveal } from '@/components/reveal'
 
 type ContactMethod = 'telegram' | 'whatsapp' | 'email' | null
 
@@ -61,7 +60,7 @@ export function Contact() {
       <div className="absolute inset-0">
         <div className="absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/5 blur-[180px]" />
         <div className="absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-purple-500/5 blur-[160px]" />
-        <div className="absolute bottom-0 left-0 h-[500px] w-[500px] rounded-full bg-blue-500/5 blur-[160px]" />
+        <div className="absolute bottom-0 left-0 h-[500px] w-[500px] rounded-full bg-cyan-500/4 blur-[160px]" />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
@@ -97,6 +96,7 @@ export function Contact() {
           <div className="relative rounded-3xl border border-white/[0.06] bg-white/[0.02] p-8 backdrop-blur-sm sm:p-12">
             <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-accent/5 blur-[120px]" />
             <div className="absolute -left-20 -bottom-20 h-80 w-80 rounded-full bg-purple-500/5 blur-[120px]" />
+            <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-cyan-500/4 blur-[120px]" />
 
             <form onSubmit={onSubmit} className="relative space-y-6">
               <div>

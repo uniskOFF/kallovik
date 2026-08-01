@@ -47,11 +47,11 @@ export function Portfolio() {
             <div className="mb-6 inline-flex items-center gap-3">
               <span className="h-px w-8 bg-white/20" />
               <span className="text-xs font-light tracking-[0.3em] text-white/30 uppercase">
-                Portfolio
+                {t.portfolio.label}
               </span>
             </div>
             <h2 className="text-4xl font-light leading-[1.1] tracking-[-0.02em] text-white sm:text-5xl lg:text-6xl">
-              Наши работы
+              {t.portfolio.title}
             </h2>
             <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-white/40 sm:text-lg">
               {t.portfolio.subtitle}

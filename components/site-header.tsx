@@ -59,7 +59,7 @@ export function SiteHeader() {
       <nav
         className={`relative flex w-full max-w-6xl items-center justify-between rounded-2xl px-5 py-3.5 transition-all duration-700 sm:px-7 ${
           scrolled
-            ? 'bg-[#070b14]/70 backdrop-blur-2xl shadow-[0_8px_40px_-16px_rgba(0,0,0,0.9)] border border-white/[0.06]'
+            ? 'bg-[#070b14]/80 backdrop-blur-2xl shadow-[0_8px_40px_-16px_rgba(0,0,0,0.9)] border border-white/[0.06]'
             : 'bg-[#070b14]/40 backdrop-blur-xl border border-white/[0.04] shadow-[0_4px_30px_-12px_rgba(0,0,0,0.3)]'
         }`}
       >

@@ -4,7 +4,6 @@ import { motion, useInView } from 'motion/react'
 import { useRef } from 'react'
 import { TrendingUp, Award, Clock, Maximize2, type LucideIcon } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
-import { Reveal } from '@/components/reveal'
 
 const ICONS: LucideIcon[] = [TrendingUp, Award, Clock, Maximize2]
 
@@ -116,7 +115,7 @@ export function Benefits() {
       <div className="absolute inset-0">
         <div className="absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/5 blur-[180px]" />
         <div className="absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-purple-500/5 blur-[160px]" />
-        <div className="absolute bottom-0 left-0 h-[500px] w-[500px] rounded-full bg-blue-500/5 blur-[160px]" />
+        <div className="absolute bottom-0 left-0 h-[500px] w-[500px] rounded-full bg-cyan-500/4 blur-[160px]" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
@@ -130,7 +129,7 @@ export function Benefits() {
             <div className="mb-6 inline-flex items-center gap-3">
               <span className="h-px w-8 bg-white/20" />
               <span className="text-xs font-light tracking-[0.3em] text-white/30 uppercase">
-                Why choose us
+                {t.benefits.label}
               </span>
             </div>
             <h2 className="max-w-3xl text-4xl font-light leading-[1.1] tracking-[-0.02em] text-white sm:text-5xl lg:text-6xl">
@@ -163,6 +162,9 @@ export function Benefits() {
                   transition={{ duration: 0.4 }}
                 >
                   <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-accent/5 blur-[100px] opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+                  <div className="absolute -inset-px rounded-3xl opacity-0 transition-opacity duration-700 group-hover:opacity-100" style={{
+                    background: 'linear-gradient(135deg, rgba(59,130,246,0.06), rgba(139,92,246,0.06), rgba(34,211,238,0.03))',
+                  }} />
 
                   <div className="relative flex flex-col">
                     <div className="flex items-start justify-between">

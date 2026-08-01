@@ -25,8 +25,8 @@ export function Hero() {
 
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
-  const glowRadius = useMotionValue(500)
-  const glowPosition = useMotionTemplate`radial-gradient(circle ${glowRadius}px at ${mouseX}px ${mouseY}px, rgba(59, 130, 246, 0.08) 0%, transparent 60%)`
+  const glowRadius = useMotionValue(600)
+  const glowPosition = useMotionTemplate`radial-gradient(circle ${glowRadius}px at ${mouseX}px ${mouseY}px, rgba(59, 130, 246, 0.12) 0%, rgba(139, 92, 246, 0.06) 30%, transparent 70%)`
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -74,37 +74,38 @@ export function Hero() {
       ctx.clearRect(0, 0, width, height)
 
       const particles: { x: number; y: number; size: number; speed: number; opacity: number; color: string }[] = []
-      const count = 80
+      const count = 100
 
       const colors = [
-        'rgba(59, 130, 246, 0.4)',
-        'rgba(139, 92, 246, 0.3)',
-        'rgba(6, 182, 212, 0.3)',
-        'rgba(96, 165, 250, 0.2)',
+        'rgba(59, 130, 246, 0.5)',
+        'rgba(139, 92, 246, 0.4)',
+        'rgba(34, 211, 238, 0.3)',
+        'rgba(96, 165, 250, 0.3)',
+        'rgba(99, 102, 241, 0.2)',
       ]
 
       for (let i = 0; i < count; i++) {
-        const x = (i * 137.5) % width
-        const y = (i * 97.3) % height
-        const size = 1 + (i % 4) * 0.8
-        const speed = 0.15 + (i % 5) * 0.08
-        const opacity = 0.1 + (i % 10) * 0.04
+        const x = (i * 137.5 + Math.random() * 20) % width
+        const y = (i * 97.3 + Math.random() * 20) % height
+        const size = 0.5 + (i % 5) * 0.6
+        const speed = 0.1 + (i % 6) * 0.06
+        const opacity = 0.05 + (i % 12) * 0.04
         const color = colors[i % colors.length]
         particles.push({ x, y, size, speed, opacity, color })
       }
 
       particles.forEach((p, i) => {
-        const x = p.x + Math.sin(time * p.speed + i * 0.7) * 3
-        const y = p.y + Math.cos(time * p.speed * 0.7 + i * 0.5) * 3
-        const opacity = p.opacity + Math.sin(time * p.speed + i * 0.3) * 0.04
+        const x = p.x + Math.sin(time * p.speed + i * 0.7) * 4
+        const y = p.y + Math.cos(time * p.speed * 0.7 + i * 0.5) * 4
+        const opacity = p.opacity + Math.sin(time * p.speed + i * 0.3) * 0.03
 
         ctx.beginPath()
         ctx.arc(x, y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = p.color.replace('0.', `${Math.max(0.05, Math.min(0.5, opacity))}.`)
+        ctx.fillStyle = p.color.replace('0.', `${Math.max(0.02, Math.min(0.5, opacity))}.`)
         ctx.fill()
       })
 
-      time += 0.004
+      time += 0.003
       animationId = requestAnimationFrame(drawParticles)
     }
 
@@ -160,7 +161,7 @@ export function Hero() {
           className="absolute inset-0"
           style={{
             background:
-              'radial-gradient(ellipse 60% 40% at 20% 30%, rgba(59,130,246,0.12) 0%, transparent 60%), radial-gradient(ellipse 50% 30% at 80% 70%, rgba(139,92,246,0.10) 0%, transparent 50%), radial-gradient(ellipse 40% 20% at 50% 100%, rgba(6,182,212,0.06) 0%, transparent 40%)',
+              'radial-gradient(ellipse 70% 50% at 30% 20%, rgba(59,130,246,0.15) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 70% 80%, rgba(139,92,246,0.12) 0%, transparent 50%), radial-gradient(ellipse 50% 30% at 50% 100%, rgba(34,211,238,0.08) 0%, transparent 40%)',
           }}
         />
 
@@ -168,17 +169,7 @@ export function Hero() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              'radial-gradient(circle at 30% 40%, rgba(59,130,246,0.05) 0%, transparent 50%), radial-gradient(circle at 70% 60%, rgba(139,92,246,0.04) 0%, transparent 50%)',
-          }}
-        />
-
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px)',
-            backgroundSize: '80px 80px',
-            maskImage: 'radial-gradient(ellipse 70% 50% at 50% 30%, black 20%, transparent 60%)',
+              'radial-gradient(circle at 20% 30%, rgba(59,130,246,0.08) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(139,92,246,0.06) 0%, transparent 40%), radial-gradient(circle at 50% 50%, rgba(34,211,238,0.04) 0%, transparent 50%)',
           }}
         />
 
@@ -187,16 +178,27 @@ export function Hero() {
           style={{ background: glowPosition }}
         />
 
-        <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/8 blur-[180px]" />
-        <div className="absolute left-[5%] top-[15%] h-[400px] w-[400px] rounded-full bg-purple-500/12 blur-[200px]" />
-        <div className="absolute right-[5%] bottom-[15%] h-[400px] w-[400px] rounded-full bg-cyan-500/10 blur-[200px]" />
-        <div className="absolute left-[30%] top-[5%] h-[200px] w-[200px] rounded-full bg-indigo-500/8 blur-[120px]" />
-        <div className="absolute right-[25%] bottom-[8%] h-[250px] w-[250px] rounded-full bg-blue-500/10 blur-[140px]" />
+        <div className="absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-[200px]" />
+        <div className="absolute left-[5%] top-[10%] h-[500px] w-[500px] rounded-full bg-purple-500/15 blur-[220px]" />
+        <div className="absolute right-[5%] bottom-[10%] h-[500px] w-[500px] rounded-full bg-cyan-500/12 blur-[220px]" />
+        <div className="absolute left-[30%] top-[5%] h-[300px] w-[300px] rounded-full bg-indigo-500/10 blur-[150px]" />
+        <div className="absolute right-[25%] bottom-[5%] h-[350px] w-[350px] rounded-full bg-blue-500/12 blur-[170px]" />
 
-        <div className="absolute top-[10%] right-[15%] h-px w-32 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-        <div className="absolute bottom-[20%] left-[10%] h-px w-24 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-        <div className="absolute top-[30%] left-[5%] h-16 w-px bg-gradient-to-b from-transparent via-white/8 to-transparent" />
-        <div className="absolute bottom-[35%] right-[8%] h-20 w-px bg-gradient-to-b from-transparent via-white/8 to-transparent" />
+        <div className="absolute top-[15%] right-[20%] h-px w-48 bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+        <div className="absolute bottom-[25%] left-[15%] h-px w-36 bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+        <div className="absolute top-[35%] left-[8%] h-20 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+        <div className="absolute bottom-[40%] right-[10%] h-24 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+
+        <motion.div
+          className="absolute top-[20%] left-[45%] h-[1px] w-[10%] bg-gradient-to-r from-transparent via-accent/30 to-transparent"
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-[30%] right-[40%] h-[1px] w-[8%] bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
       </motion.div>
 
       <div className="relative z-10 mx-auto flex min-h-[100dvh] max-w-6xl flex-col justify-center px-6 py-20 sm:px-10 lg:px-14">
@@ -233,14 +235,14 @@ export function Hero() {
                 transition={{ duration: 1.2, delay: 0.1, ease: "easeOut" }}
                 className="text-[clamp(2.8rem,8vw,5.5rem)] font-bold leading-[1.05] tracking-[-0.03em]"
               >
-                <span className="bg-gradient-to-r from-[#3b82f6] via-[#8b5cf6] to-[#06b6d4] bg-[length:300%_300%] bg-clip-text text-transparent animate-gradient-shine">
+                <span className="bg-gradient-to-r from-[#3b82f6] via-[#8b5cf6] to-[#22d3ee] bg-[length:300%_300%] bg-clip-text text-transparent animate-gradient-shine">
                   {t.hero.title2}
                 </span>
                 <motion.span
-                  className="absolute inset-0 blur-3xl opacity-20 bg-gradient-to-r from-[#3b82f6] via-[#8b5cf6] to-[#06b6d4] animate-gradient-shine"
+                  className="absolute inset-0 blur-3xl opacity-25 bg-gradient-to-r from-[#3b82f6] via-[#8b5cf6] to-[#22d3ee] animate-gradient-shine"
                   style={{ backgroundSize: '300% 300%' }}
                   animate={{
-                    opacity: [0.08, 0.25, 0.08],
+                    opacity: [0.1, 0.3, 0.1],
                   }}
                   transition={{
                     duration: 4,
@@ -282,7 +284,7 @@ export function Hero() {
             >
               <motion.a
                 href="#contacts"
-                className="group relative overflow-hidden rounded-full bg-accent px-8 py-3.5 text-sm font-medium text-white shadow-[0_8px_30px_-8px_rgba(59,130,246,0.6)] transition-all duration-500 hover:shadow-[0_12px_50px_-8px_rgba(59,130,246,0.8)] hover:scale-[1.02]"
+                className="group relative overflow-hidden rounded-full bg-gradient-to-r from-accent to-purple-500 px-8 py-3.5 text-sm font-medium text-white shadow-[0_8px_30px_-8px_rgba(59,130,246,0.6)] transition-all duration-500 hover:shadow-[0_12px_50px_-8px_rgba(59,130,246,0.8)] hover:scale-[1.02]"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -342,7 +344,7 @@ export function Hero() {
       </div>
 
       <motion.div
-        className="pointer-events-none absolute bottom-0 left-0 right-0 z-0 h-32 bg-gradient-to-t from-[#05080f] to-transparent"
+        className="pointer-events-none absolute bottom-0 left-0 right-0 z-0 h-48 bg-gradient-to-t from-[#05080f] via-[#05080f]/80 to-transparent"
         style={{ opacity }}
       />
 

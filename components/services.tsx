@@ -127,7 +127,7 @@ export function Services() {
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-accent/5 blur-[180px]" />
         <div className="absolute top-0 right-0 h-[500px] w-[500px] rounded-full bg-purple-500/5 blur-[160px]" />
-        <div className="absolute bottom-0 left-0 h-[500px] w-[500px] rounded-full bg-blue-500/5 blur-[160px]" />
+        <div className="absolute bottom-0 left-0 h-[500px] w-[500px] rounded-full bg-cyan-500/4 blur-[160px]" />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">

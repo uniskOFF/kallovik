@@ -26,7 +26,7 @@ export function SiteFooter() {
       <div className="absolute inset-0">
         <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/5 blur-[180px]" />
         <div className="absolute left-[10%] top-[20%] h-[300px] w-[300px] rounded-full bg-purple-500/5 blur-[160px]" />
-        <div className="absolute right-[10%] bottom-[20%] h-[300px] w-[300px] rounded-full bg-blue-500/5 blur-[160px]" />
+        <div className="absolute right-[10%] bottom-[20%] h-[300px] w-[300px] rounded-full bg-cyan-500/4 blur-[160px]" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:px-12">
