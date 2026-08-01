@@ -16,7 +16,7 @@ const AnimatedIcon = ({
 }) => {
   if (Icon === TrendingUp) {
     return (
-      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/60 transition-colors duration-500 group-hover:bg-white/10 group-hover:text-white/90">
+      <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-white/60 transition-all duration-500 group-hover:border-accent/30 group-hover:bg-white/10 group-hover:text-white/90 group-hover:shadow-[0_0_40px_-12px_rgba(59,130,246,0.15)]">
         <motion.div
           className="flex items-center justify-center"
           animate={{
@@ -36,7 +36,7 @@ const AnimatedIcon = ({
 
   if (Icon === Award) {
     return (
-      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/60 transition-colors duration-500 group-hover:bg-white/10 group-hover:text-white/90">
+      <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-white/60 transition-all duration-500 group-hover:border-accent/30 group-hover:bg-white/10 group-hover:text-white/90 group-hover:shadow-[0_0_40px_-12px_rgba(59,130,246,0.15)]">
         <motion.div
           className="flex items-center justify-center"
           animate={{
@@ -56,7 +56,7 @@ const AnimatedIcon = ({
 
   if (Icon === Clock) {
     return (
-      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/60 transition-colors duration-500 group-hover:bg-white/10 group-hover:text-white/90">
+      <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-white/60 transition-all duration-500 group-hover:border-accent/30 group-hover:bg-white/10 group-hover:text-white/90 group-hover:shadow-[0_0_40px_-12px_rgba(59,130,246,0.15)]">
         <motion.div
           className="flex items-center justify-center"
           animate={{
@@ -76,7 +76,7 @@ const AnimatedIcon = ({
 
   if (Icon === Maximize2) {
     return (
-      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/60 transition-colors duration-500 group-hover:bg-white/10 group-hover:text-white/90">
+      <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-white/60 transition-all duration-500 group-hover:border-accent/30 group-hover:bg-white/10 group-hover:text-white/90 group-hover:shadow-[0_0_40px_-12px_rgba(59,130,246,0.15)]">
         <motion.div
           className="flex items-center justify-center"
           animate={{
@@ -95,7 +95,7 @@ const AnimatedIcon = ({
   }
 
   return (
-    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/60">
+    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-white/60 transition-all duration-500 group-hover:border-accent/30 group-hover:bg-white/10 group-hover:text-white/90 group-hover:shadow-[0_0_40px_-12px_rgba(59,130,246,0.15)]">
       <Icon className="h-6 w-6" />
     </div>
   )
@@ -138,10 +138,9 @@ export function Benefits() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 auto-rows-fr">
           {t.benefits.items.map((item, i) => {
             const Icon = ICONS[i]
-            const isOdd = i % 2 === 1
 
             return (
               <motion.div
@@ -154,31 +153,33 @@ export function Benefits() {
                   ease: [0.16, 1, 0.3, 1],
                 }}
                 viewport={{ once: true }}
-                className={`relative ${isOdd ? 'lg:mt-12' : ''}`}
               >
                 <motion.div
-                  className="group relative h-full overflow-hidden rounded-3xl border border-white/[0.04] bg-white/[0.02] p-8 transition-all duration-700 hover:border-white/10 hover:bg-white/[0.04] hover:shadow-[0_0_60px_-20px_rgba(255,255,255,0.03)]"
+                  className="group relative flex h-full flex-col rounded-3xl border border-white/[0.06] bg-white/[0.025] p-10 backdrop-blur-sm transition-all duration-700 hover:-translate-y-2 hover:border-accent/30 hover:bg-white/[0.04] hover:shadow-[0_20px_80px_-20px_rgba(59,130,246,0.08)]"
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-accent/5 blur-[100px] opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-accent/0 via-accent/0 to-purple-500/0 opacity-0 transition-opacity duration-700 group-hover:from-accent/5 group-hover:to-purple-500/5 group-hover:opacity-100" />
+
                   <div className="absolute -inset-px rounded-3xl opacity-0 transition-opacity duration-700 group-hover:opacity-100" style={{
                     background: 'linear-gradient(135deg, rgba(59,130,246,0.06), rgba(139,92,246,0.06), rgba(34,211,238,0.03))',
                   }} />
 
-                  <div className="relative flex flex-col">
+                  <div className="relative flex flex-1 flex-col">
                     <div className="flex items-start justify-between">
                       <AnimatedIcon icon={Icon} index={i} />
-                      <span className="text-6xl font-light text-white/5 transition-colors duration-500 group-hover:text-white/10">
+                      <span className="text-[90px] font-light leading-none text-white/5 transition-colors duration-700 group-hover:text-white/10">
                         0{i + 1}
                       </span>
                     </div>
 
-                    <h3 className="mt-6 text-2xl font-light tracking-[-0.02em] text-white/90">
+                    <h3 className="mt-8 text-[28px] font-light tracking-[-0.03em] text-white/90 transition-colors duration-700 group-hover:text-white">
                       {item.title}
                     </h3>
 
-                    <p className="mt-3 text-base leading-relaxed text-white/40">
+                    <div className="mt-4 h-px w-12 bg-white/10 transition-all duration-700 group-hover:w-16 group-hover:bg-accent/30" />
+
+                    <p className="mt-6 flex-1 text-base leading-8 text-white/45 transition-colors duration-700 group-hover:text-white/60">
                       {item.desc}
                     </p>
                   </div>

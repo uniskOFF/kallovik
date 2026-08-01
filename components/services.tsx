@@ -18,7 +18,7 @@ const IconWithAnimation = ({
 
   if (Icon === Rocket) {
     return (
-      <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80 overflow-visible">
+      <div className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/5 backdrop-blur-sm text-white/80 overflow-visible transition-all duration-500 group-hover:bg-white/10 group-hover:shadow-[0_0_30px_-8px_rgba(59,130,246,0.15)]">
         <motion.div
           className="flex items-center justify-center"
           initial={{ y: 0, opacity: 1 }}
@@ -33,7 +33,7 @@ const IconWithAnimation = ({
 
   if (Icon === Cog) {
     return (
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80">
+      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/5 backdrop-blur-sm text-white/80 transition-all duration-500 group-hover:bg-white/10 group-hover:shadow-[0_0_30px_-8px_rgba(59,130,246,0.15)]">
         <motion.div
           className="flex items-center justify-center"
           initial={{ rotate: 0 }}
@@ -48,7 +48,7 @@ const IconWithAnimation = ({
 
   if (Icon === Brain) {
     return (
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80">
+      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/5 backdrop-blur-sm text-white/80 transition-all duration-500 group-hover:bg-white/10 group-hover:shadow-[0_0_30px_-8px_rgba(59,130,246,0.15)]">
         <motion.div
           className="flex items-center justify-center"
           initial={{ scale: 1 }}
@@ -63,7 +63,7 @@ const IconWithAnimation = ({
 
   if (Icon === Globe) {
     return (
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80">
+      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/5 backdrop-blur-sm text-white/80 transition-all duration-500 group-hover:bg-white/10 group-hover:shadow-[0_0_30px_-8px_rgba(59,130,246,0.15)]">
         <motion.div
           className="flex items-center justify-center"
           initial={{ rotate: 0 }}
@@ -78,7 +78,7 @@ const IconWithAnimation = ({
 
   if (Icon === Bot) {
     return (
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80">
+      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/5 backdrop-blur-sm text-white/80 transition-all duration-500 group-hover:bg-white/10 group-hover:shadow-[0_0_30px_-8px_rgba(59,130,246,0.15)]">
         <motion.div
           className="flex items-center justify-center"
           initial={{ rotate: 0 }}
@@ -93,7 +93,7 @@ const IconWithAnimation = ({
 
   if (Icon === Sparkles) {
     return (
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80">
+      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/5 backdrop-blur-sm text-white/80 transition-all duration-500 group-hover:bg-white/10 group-hover:shadow-[0_0_30px_-8px_rgba(59,130,246,0.15)]">
         <motion.div
           className="flex items-center justify-center"
           initial={{ scale: 1, rotate: 0 }}
@@ -107,7 +107,7 @@ const IconWithAnimation = ({
   }
 
   return (
-    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80">
+    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/5 backdrop-blur-sm text-white/80 transition-all duration-500 group-hover:bg-white/10 group-hover:shadow-[0_0_30px_-8px_rgba(59,130,246,0.15)]">
       <Icon className={iconSize} />
     </div>
   )
@@ -116,7 +116,6 @@ const IconWithAnimation = ({
 export function Services() {
   const { t } = useLanguage()
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   const toggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index)
@@ -154,11 +153,10 @@ export function Services() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
           {t.services.items.map((item, i) => {
             const Icon = ICONS[i]
             const isExpanded = expandedIndex === i
-            const isHovered = hoveredIndex === i
             const isOdd = i % 2 === 1
 
             return (
@@ -173,50 +171,47 @@ export function Services() {
                 }}
                 viewport={{ once: true }}
                 className={`relative ${isOdd ? 'lg:mt-12' : ''}`}
-                onMouseEnter={() => setHoveredIndex(i)}
-                onMouseLeave={() => setHoveredIndex(null)}
               >
                 <motion.div
-                  className={`group relative h-full overflow-hidden rounded-3xl border transition-all duration-700 ${
-                    isExpanded
-                      ? 'border-accent/40 bg-white/[0.04] shadow-[0_0_80px_-20px_rgba(59,130,246,0.08)]'
-                      : 'border-white/[0.04] bg-white/[0.02] hover:border-white/10'
-                  }`}
+                  className="group relative flex h-full flex-col rounded-3xl border border-white/[0.06] bg-white/[0.025] p-10 backdrop-blur-sm transition-all duration-700 hover:-translate-y-2 hover:border-accent/30 hover:bg-white/[0.04] hover:shadow-[0_20px_80px_-20px_rgba(59,130,246,0.08)]"
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.4 }}
+                  onMouseLeave={() => {
+                    if (isExpanded) toggleExpand(i)
+                  }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/0 to-purple-500/0 opacity-0 transition-opacity duration-700 group-hover:from-accent/5 group-hover:to-purple-500/5 group-hover:opacity-100" />
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-accent/0 via-accent/0 to-purple-500/0 opacity-0 transition-opacity duration-700 group-hover:from-accent/5 group-hover:to-purple-500/5 group-hover:opacity-100" />
 
                   <div className="absolute -inset-px rounded-3xl opacity-0 transition-opacity duration-700 group-hover:opacity-100" style={{
-                    background: 'linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08), rgba(34,211,238,0.04))',
+                    background: 'linear-gradient(135deg, rgba(59,130,246,0.06), rgba(139,92,246,0.06), rgba(34,211,238,0.03))',
                   }} />
 
-                  <div className="absolute inset-0 rounded-3xl border border-white/[0.04] transition-all duration-700 group-hover:border-accent/20" />
-
-                  <div className="relative flex flex-col p-8 sm:p-10">
+                  <div className="relative flex flex-1 flex-col">
                     <div className="flex items-start justify-between">
-                      <div className="relative">
-                        <div className="absolute inset-0 rounded-full bg-accent/10 blur-xl opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
-                        <IconWithAnimation
-                          icon={Icon}
-                          isExpanded={isExpanded}
-                        />
-                      </div>
+                      <IconWithAnimation
+                        icon={Icon}
+                        isExpanded={isExpanded}
+                      />
+                      <span className="text-7xl font-light text-white/5 transition-colors duration-700 group-hover:text-white/10">
+                        0{i + 1}
+                      </span>
                     </div>
 
-                    <h3 className="relative mt-6 text-2xl font-light tracking-[-0.02em] text-white/90 transition-colors duration-700 group-hover:text-white">
+                    <h3 className="mt-8 text-[28px] font-light tracking-[-0.03em] text-white/90 transition-colors duration-700 group-hover:text-white">
                       {item.title}
                     </h3>
 
-                    <div className="relative mt-3">
+                    <div className="mt-4 h-px w-12 bg-white/10 transition-all duration-700 group-hover:w-16 group-hover:bg-accent/30" />
+
+                    <div className="mt-6 flex-1">
                       <AnimatePresence mode="wait">
                         {isExpanded ? (
                           <motion.div
                             key="tip"
-                            initial={{ opacity: 0, y: 16 }}
+                            initial={{ opacity: 0, y: 12 }}
                             animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -16 }}
-                            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                            exit={{ opacity: 0, y: -12 }}
+                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                           >
                             <p className="text-base leading-relaxed text-white/60">
                               {item.tip}
@@ -225,12 +220,12 @@ export function Services() {
                         ) : (
                           <motion.div
                             key="desc"
-                            initial={{ opacity: 0, y: 16 }}
+                            initial={{ opacity: 0, y: 12 }}
                             animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -16 }}
-                            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                            exit={{ opacity: 0, y: -12 }}
+                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                           >
-                            <p className="text-base leading-relaxed text-white/40 transition-colors duration-700 group-hover:text-white/60">
+                            <p className="text-base leading-relaxed text-white/45 transition-colors duration-700 group-hover:text-white/60">
                               {item.desc}
                             </p>
                           </motion.div>
@@ -241,7 +236,7 @@ export function Services() {
                     <motion.button
                       type="button"
                       onClick={() => toggleExpand(i)}
-                      className={`mt-6 flex items-center gap-2 text-sm font-light transition-all duration-500 ${
+                      className={`mt-8 flex items-center gap-2 text-sm font-light transition-all duration-500 ${
                         isExpanded
                           ? 'text-white/30 hover:text-white/60'
                           : 'text-white/40 hover:text-white/80'
