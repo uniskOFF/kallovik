@@ -21,7 +21,7 @@ const IconWithAnimation = ({
   
   if (Icon === Rocket) {
     return (
-      <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80 overflow-visible">
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80 overflow-visible">
         <motion.div
           className="flex items-center justify-center"
           initial={{ y: 0, opacity: 1 }}
@@ -30,14 +30,6 @@ const IconWithAnimation = ({
         >
           <Icon className={iconSize} />
         </motion.div>
-        {isExpanded && (
-          <motion.div
-            className="absolute bottom-0 left-1/2 h-8 w-1 -translate-x-1/2 bg-gradient-to-t from-orange-400 via-yellow-400 to-transparent"
-            initial={{ scaleY: 0, opacity: 0 }}
-            animate={{ scaleY: 1, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          />
-        )}
       </div>
     )
   }
@@ -240,7 +232,6 @@ export function Services() {
                       </AnimatePresence>
                     </div>
 
-                    {/* Кнопка всегда внизу */}
                     <motion.button
                       type="button"
                       onClick={() => toggleExpand(i)}
