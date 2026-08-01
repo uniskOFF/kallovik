@@ -38,14 +38,13 @@
   --ring: #3b82f6;
 }
 
-/* 🌟 ТЕХНОЛОГИЧНЫЙ И ГЛУБОКИЙ ФОН */
 html {
   background: var(--background);
   min-height: 100vh;
 }
 
 body {
-  background: 
+  background:
     var(--background),
     radial-gradient(
       ellipse 70% 50% at 50% 20%,
@@ -62,21 +61,20 @@ body {
       rgba(139, 92, 246, 0.05) 0%,
       transparent 60%
     );
-  
+
   color: var(--foreground);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   background-blend-mode: normal, normal, normal, normal;
 }
 
-/* ✨ 3D-сетка */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image: 
+  background-image:
     linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: 80px 80px;
@@ -84,14 +82,13 @@ body::before {
   -webkit-mask-image: radial-gradient(ellipse 70% 70% at center, black 30%, transparent 70%);
 }
 
-/* 🌌 ПАРЯЩИЕ СВЕТОВЫЕ СФЕРЫ */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image: 
+  background-image:
     radial-gradient(circle at 15% 25%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
     radial-gradient(circle at 85% 35%, rgba(99, 102, 241, 0.06) 0%, transparent 40%),
     radial-gradient(circle at 20% 75%, rgba(139, 92, 246, 0.05) 0%, transparent 35%),
@@ -116,6 +113,23 @@ body::after {
     transform: translate(1%, -1%) scale(1.02);
     opacity: 1;
   }
+}
+
+@keyframes gradientShine {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-shine {
+  background-size: 300% 300% !important;
+  animation: gradientShine 6s ease-in-out infinite;
 }
 
 @layer base {
@@ -158,7 +172,8 @@ body::after {
 }
 
 @keyframes floatY {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -167,31 +182,11 @@ body::after {
 }
 
 @keyframes pulseLine {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.15;
   }
   50% {
     opacity: 0.5;
   }
-}
-
-/* 🔥 ПРЕМИАЛЬНОЕ ПЕРЕЛИВАНИЕ ТЕКСТА */
-@keyframes gradientShine {
-  0% {
-    background-position: 0% 50%;
-    filter: brightness(1);
-  }
-  50% {
-    background-position: 100% 50%;
-    filter: brightness(1.2);
-  }
-  100% {
-    background-position: 0% 50%;
-    filter: brightness(1);
-  }
-}
-
-.animate-gradient-shine {
-  background-size: 300% 300% !important;
-  animation: gradientShine 4s ease-in-out infinite;
 }
