@@ -7,13 +7,13 @@ import { ArrowUpRight, Sparkles } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
 import { Reveal } from '@/components/reveal'
 
-const IMAGES = [
-  '/cases/portal.png',
-  '/cases/bot.png',
-  '/cases/crm.png',
-  '/cases/ai.png',
-  '/cases/shop.png',
-  '/cases/analytics.png',
+// Временные заглушки вместо фотографий
+const PLACEHOLDER_IMAGES = [
+  '/placeholder.svg',
+  '/placeholder.svg',
+  '/placeholder.svg',
+  '/placeholder.svg',
+  '/placeholder.svg',
 ]
 
 export function Portfolio() {
@@ -21,7 +21,12 @@ export function Portfolio() {
   const [active, setActive] = useState(0)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
-  const items = t.portfolio.items.map((it, i) => ({ ...it, img: IMAGES[i] }))
+  // Берём только первые 5 элементов, чтобы сетка была ровной (3+2)
+  const items = t.portfolio.items.slice(0, 5).map((it, i) => ({ 
+    ...it, 
+    img: PLACEHOLDER_IMAGES[i % PLACEHOLDER_IMAGES.length] 
+  }))
+  
   const filters = t.portfolio.filters
   const filtered = active === 0 ? items : items.filter((it) => it.cat === filters[active])
 
@@ -48,7 +53,7 @@ export function Portfolio() {
               </span>
             </div>
             <h2 className="text-4xl font-light leading-[1.1] tracking-[-0.02em] text-white sm:text-5xl lg:text-6xl">
-              {t.portfolio.title}
+              Наши работы
             </h2>
             <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-white/40 sm:text-lg">
               {t.portfolio.subtitle}
@@ -105,22 +110,22 @@ export function Portfolio() {
                 onMouseEnter={() => setHoveredIndex(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#0a0f1a]">
-                  <Image
-                    src={item.img || '/placeholder.svg'}
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                  />
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#0a0f1a] flex items-center justify-center">
+                  {/* Заглушка с надписью Soon... */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-[#0a0f1a] via-[#0f1728] to-[#0a0f1a]">
+                    <div className="relative">
+                      <div className="absolute inset-0 blur-2xl bg-accent/20 rounded-full" />
+                      <Sparkles className="h-12 w-12 text-accent/30 relative z-10 animate-pulse" />
+                    </div>
+                    <span className="mt-4 text-2xl font-light tracking-[0.3em] text-white/20">
+                      Soon...
+                    </span>
+                    <span className="mt-2 text-sm font-light tracking-[0.15em] text-white/10">
+                      {item.title}
+                    </span>
+                  </div>
                   
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#05080f] via-[#05080f]/40 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-40" />
-                  
-                  <div className="absolute inset-0 bg-accent/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-                  <motion.div
-                    className="absolute inset-0 border border-white/0 rounded-3xl transition-all duration-700 group-hover:border-white/10"
-                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#05080f] via-[#05080f]/40 to-transparent opacity-60" />
                 </div>
 
                 <div className="absolute bottom-0 left-0 right-0 p-8">
