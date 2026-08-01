@@ -9,13 +9,13 @@ import { Reveal } from '@/components/reveal'
 type ContactMethod = 'telegram' | 'whatsapp' | 'email' | null
 
 const contactMethods = [
-  { id: 'telegram', label: 'Telegram', icon: Send, placeholder: '@username или номер телефона' },
+  { id: 'telegram', label: 'Telegram', icon: Send, placeholder: '@username' },
   { id: 'whatsapp', label: 'WhatsApp', icon: MessageCircle, placeholder: '+7 (___) ___-__-__' },
   { id: 'email', label: 'Email', icon: Mail, placeholder: 'Email' },
 ]
 
 export function Contact() {
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
   const [sent, setSent] = useState(false)
   const [selectedMethod, setSelectedMethod] = useState<ContactMethod>(null)
   const [formData, setFormData] = useState({
@@ -75,7 +75,7 @@ export function Contact() {
             <div className="mb-6 inline-flex items-center gap-3">
               <span className="h-px w-8 bg-white/20" />
               <span className="text-xs font-light tracking-[0.3em] text-white/30 uppercase">
-                Contact
+                {t.contact.label}
               </span>
             </div>
             <h2 className="max-w-3xl text-4xl font-light leading-[1.1] tracking-[-0.02em] text-white sm:text-5xl lg:text-6xl">
@@ -111,14 +111,14 @@ export function Contact() {
                   onChange={handleChange}
                   onFocus={() => setFocused('name')}
                   onBlur={() => setFocused(null)}
-                  placeholder="Ваше имя"
+                  placeholder={t.contact.namePlaceholder}
                   className={inputClass('name')}
                 />
               </div>
 
               <div>
                 <label className="mb-3 block text-sm font-light text-white/40">
-                  Выберите способ связи
+                  {t.contact.selectMethod}
                 </label>
                 <div className="flex flex-wrap gap-3">
                   {contactMethods.map((method) => {
@@ -166,9 +166,9 @@ export function Contact() {
                     transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   >
                     <label className="mb-2 block text-sm font-light text-white/40">
-                      {selectedMethod === 'email' ? 'Email' : 
-                       selectedMethod === 'telegram' ? 'Telegram' : 
-                       'WhatsApp'}
+                      {selectedMethod === 'email' ? t.contact.email : 
+                       selectedMethod === 'telegram' ? t.contact.telegram : 
+                       t.contact.whatsapp}
                     </label>
                     <input
                       type={selectedMethod === 'email' ? 'email' : 'text'}
@@ -178,7 +178,7 @@ export function Contact() {
                       onChange={handleChange}
                       onFocus={() => setFocused('contact')}
                       onBlur={() => setFocused(null)}
-                      placeholder={selectedMethodData.placeholder}
+                      placeholder={t.contact.contactPlaceholder}
                       className={inputClass('contact')}
                       inputMode={selectedMethod === 'whatsapp' ? 'tel' : 'text'}
                     />
@@ -197,7 +197,7 @@ export function Contact() {
                   onChange={handleChange}
                   onFocus={() => setFocused('project')}
                   onBlur={() => setFocused(null)}
-                  placeholder="Расскажите подробнее о вашем проекте или задаче"
+                  placeholder={t.contact.projectPlaceholder}
                   className={`${inputClass('project')} resize-none`}
                 />
               </div>
@@ -246,7 +246,7 @@ export function Contact() {
 
               {!selectedMethod && (
                 <p className="text-center text-sm text-white/20">
-                  Выберите способ связи
+                  {t.contact.selectMethodHint}
                 </p>
               )}
             </form>

@@ -49,6 +49,7 @@ const translations = {
       title: 'Чем мы можем помочь вашему бизнесу',
       subtitle: 'Современные цифровые решения для роста, автоматизации и развития бизнеса.',
       info: 'Подробнее об услуге',
+      label: 'Услуги',
       items: [
         {
           title: 'Разработка сайтов',
@@ -85,6 +86,7 @@ const translations = {
     benefits: {
       title: 'Почему современный бизнес выбирает цифровые решения',
       subtitle: 'Технологии перестали быть роскошью — сегодня это условие выживания и роста.',
+      label: 'Почему мы',
       items: [
         { title: 'Рост продаж', desc: 'Автоматизация воронки и новые каналы привлечения клиентов.' },
         { title: 'Репутация', desc: 'Современный образ компании, которому доверяют.' },
@@ -95,6 +97,7 @@ const translations = {
     about: {
       title: 'Почему нам доверяют',
       subtitle: 'Мы работаем как технологический партнёр, а не как подрядчик.',
+      label: 'О нас',
       items: [
         { title: 'Индивидуальный подход', desc: 'Погружаемся в задачу и предлагаем решение под вас.' },
         { title: 'Гибкая разработка', desc: 'Прозрачные этапы и быстрые итерации.' },
@@ -105,6 +108,7 @@ const translations = {
     portfolio: {
       title: 'Наши работы',
       subtitle: 'Реальные цифровые продукты, созданные командой AESBAU Labs.',
+      label: 'Наши работы',
       filters: ['Все', 'Сайты', 'Боты', 'Автоматизация', 'AI'],
       view: 'Смотреть кейс',
       items: [
@@ -119,12 +123,18 @@ const translations = {
     contact: {
       title: 'Расскажите о вашем проекте',
       subtitle: 'Оставьте заявку — обсудим задачу и предложим решение.',
+      label: 'Контакты',
       name: 'Имя',
-      phone: 'Телефон',
+      namePlaceholder: 'Введите ваше имя',
+      selectMethod: 'Выберите способ связи',
+      selectMethodHint: 'Выберите способ связи',
+      contactPlaceholder: 'Введите контактные данные',
       telegram: 'Telegram',
+      whatsapp: 'WhatsApp',
       email: 'Email',
       project: 'Описание проекта',
-      submit: 'Оставить заявку',
+      projectPlaceholder: 'Расскажите подробнее о вашем проекте или задаче',
+      submit: 'Отправить заявку',
       success: 'Спасибо! Мы свяжемся с вами в ближайшее время.',
       infoTitle: 'Контакты',
       phoneLabel: 'Телефон',
@@ -176,6 +186,7 @@ const translations = {
       title: 'How we can help your business',
       subtitle: 'Modern digital solutions for growth, automation and development.',
       info: 'More about this service',
+      label: 'Services',
       items: [
         {
           title: 'Web Development',
@@ -212,6 +223,7 @@ const translations = {
     benefits: {
       title: 'Why modern business chooses digital',
       subtitle: 'Technology is no longer a luxury — today it is the condition for growth.',
+      label: 'Why choose us',
       items: [
         { title: 'More sales', desc: 'Funnel automation and new customer channels.' },
         { title: 'Reputation', desc: 'A modern company image people trust.' },
@@ -222,6 +234,7 @@ const translations = {
     about: {
       title: 'Why clients trust us',
       subtitle: 'We work as a technology partner, not just a contractor.',
+      label: 'About',
       items: [
         { title: 'Personal approach', desc: 'We dive into the task and craft a solution for you.' },
         { title: 'Flexible development', desc: 'Transparent stages and fast iterations.' },
@@ -232,6 +245,7 @@ const translations = {
     portfolio: {
       title: 'Our works',
       subtitle: 'Real digital products built by the AESBAU Labs team.',
+      label: 'Our works',
       filters: ['All', 'Websites', 'Bots', 'Automation', 'AI'],
       view: 'View case',
       items: [
@@ -246,12 +260,18 @@ const translations = {
     contact: {
       title: 'Tell us about your project',
       subtitle: 'Leave a request — we will discuss the task and propose a solution.',
+      label: 'Contact',
       name: 'Name',
-      phone: 'Phone',
+      namePlaceholder: 'Enter your name',
+      selectMethod: 'Choose contact method',
+      selectMethodHint: 'Choose contact method',
+      contactPlaceholder: 'Enter contact details',
       telegram: 'Telegram',
+      whatsapp: 'WhatsApp',
       email: 'Email',
       project: 'Project description',
-      submit: 'Leave a request',
+      projectPlaceholder: 'Tell us more about your project or task',
+      submit: 'Send request',
       success: 'Thank you! We will get back to you shortly.',
       infoTitle: 'Contacts',
       phoneLabel: 'Phone',
