@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { Send, Check, Mail, MessageCircle, type LucideIcon } from 'lucide-react'
+import { motion, AnimatePresence } from 'motion/react'
+import { Send, Check, Mail, MessageCircle, Sparkles, type LucideIcon } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
 import { Reveal } from '@/components/reveal'
-import { motion, AnimatePresence } from 'motion/react'
 
 type ContactMethod = 'telegram' | 'whatsapp' | 'email' | null
 
@@ -23,6 +23,7 @@ export function Contact() {
     contact: '',
     project: '',
   })
+  const [focused, setFocused] = useState<string | null>(null)
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -46,32 +47,60 @@ export function Contact() {
   }
 
   const selectedMethodData = contactMethods.find(m => m.id === selectedMethod)
-
-  const inputClass =
-    'w-full rounded-xl border border-border bg-glass px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground transition-all duration-300 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30'
-
   const isFormValid = selectedMethod && formData.name.trim() && formData.contact.trim()
 
-  return (
-    <section id="contacts" className="relative py-24 sm:py-32">
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[400px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-[140px]" />
-      
-      <div className="mx-auto max-w-3xl px-4 sm:px-6">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
-            {t.contact.title}
-          </h2>
-          <p className="mt-4 text-pretty text-base leading-relaxed text-muted-foreground">
-            {t.contact.subtitle}
-          </p>
-        </Reveal>
+  const inputClass = (field: string) =>
+    `w-full rounded-xl border bg-transparent px-4 py-3.5 text-sm text-white placeholder:text-white/20 transition-all duration-300 focus:outline-none ${
+      focused === field
+        ? 'border-white/30 shadow-[0_0_30px_-12px_rgba(255,255,255,0.05)]'
+        : 'border-white/10 hover:border-white/20'
+    }`
 
-        <Reveal delay={0.1} className="mt-10">
-          <div className="glass rounded-2xl p-6 sm:p-8">
-            <form onSubmit={onSubmit} className="space-y-5">
-              {/* Имя */}
+  return (
+    <section id="contacts" className="relative overflow-hidden bg-[#05080f] py-32 sm:py-40">
+      <div className="absolute inset-0">
+        <div className="absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/5 blur-[180px]" />
+        <div className="absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-purple-500/5 blur-[160px]" />
+        <div className="absolute bottom-0 left-0 h-[500px] w-[500px] rounded-full bg-blue-500/5 blur-[160px]" />
+      </div>
+
+      <div className="relative mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+        <div className="mb-20 sm:mb-28">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
+          >
+            <div className="mb-6 inline-flex items-center gap-3">
+              <span className="h-px w-8 bg-white/20" />
+              <span className="text-xs font-light tracking-[0.3em] text-white/30 uppercase">
+                Contact
+              </span>
+            </div>
+            <h2 className="max-w-3xl text-4xl font-light leading-[1.1] tracking-[-0.02em] text-white sm:text-5xl lg:text-6xl">
+              {t.contact.title}
+            </h2>
+            <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-white/40 sm:text-lg">
+              {t.contact.subtitle}
+            </p>
+          </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true }}
+          className="mx-auto max-w-3xl"
+        >
+          <div className="relative rounded-3xl border border-white/[0.06] bg-white/[0.02] p-8 backdrop-blur-sm sm:p-12">
+            <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-accent/5 blur-[120px]" />
+            <div className="absolute -left-20 -bottom-20 h-80 w-80 rounded-full bg-purple-500/5 blur-[120px]" />
+
+            <form onSubmit={onSubmit} className="relative space-y-6">
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-muted-foreground">
+                <label className="mb-2 block text-sm font-light text-white/40">
                   {t.contact.name}
                 </label>
                 <input
@@ -80,17 +109,18 @@ export function Contact() {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="Введите ваше имя"
-                  className={inputClass}
+                  onFocus={() => setFocused('name')}
+                  onBlur={() => setFocused(null)}
+                  placeholder="Ваше имя"
+                  className={inputClass('name')}
                 />
               </div>
 
-              {/* Выбор способа связи */}
               <div>
-                <label className="mb-2 block text-sm font-medium text-muted-foreground">
+                <label className="mb-3 block text-sm font-light text-white/40">
                   Выберите способ связи
                 </label>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-3">
                   {contactMethods.map((method) => {
                     const Icon = method.icon
                     const isSelected = selectedMethod === method.id
@@ -99,18 +129,26 @@ export function Contact() {
                         key={method.id}
                         type="button"
                         onClick={() => setSelectedMethod(method.id as ContactMethod)}
-                        className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-all duration-300 ${
+                        className={`relative flex items-center gap-2.5 rounded-full border px-5 py-2.5 text-sm font-light transition-all duration-500 ${
                           isSelected
-                            ? 'border-accent bg-accent/10 text-accent shadow-[0_0_20px_-8px_rgba(59,130,246,0.2)]'
-                            : 'border-border bg-glass text-muted-foreground hover:border-accent/40 hover:text-foreground'
+                            ? 'border-white/30 bg-white/10 text-white shadow-[0_0_40px_-12px_rgba(255,255,255,0.05)]'
+                            : 'border-white/10 text-white/40 hover:border-white/20 hover:text-white/70'
                         }`}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.97 }}
                       >
-                        <Icon className="h-3.5 w-3.5" />
+                        <Icon className="h-4 w-4" />
                         <span>{method.label}</span>
                         {isSelected && (
-                          <Check className="h-3 w-3 text-accent" />
+                          <motion.span
+                            layoutId="contactMethodIndicator"
+                            className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-white text-[#05080f]"
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ type: 'spring', duration: 0.4 }}
+                          >
+                            <Check className="h-3 w-3" />
+                          </motion.span>
                         )}
                       </motion.button>
                     )
@@ -118,18 +156,16 @@ export function Contact() {
                 </div>
               </div>
 
-              {/* Динамическое поле для контакта */}
               <AnimatePresence mode="wait">
                 {selectedMethod && selectedMethodData && (
                   <motion.div
                     key={selectedMethod}
-                    initial={{ opacity: 0, y: -8, height: 0 }}
-                    animate={{ opacity: 1, y: 0, height: 'auto' }}
-                    exit={{ opacity: 0, y: -8, height: 0 }}
-                    transition={{ duration: 0.25 }}
-                    className="overflow-hidden"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <label className="mb-1.5 block text-sm font-medium text-muted-foreground">
+                    <label className="mb-2 block text-sm font-light text-white/40">
                       {selectedMethod === 'email' ? 'Email' : 
                        selectedMethod === 'telegram' ? 'Telegram' : 
                        'WhatsApp'}
@@ -140,62 +176,64 @@ export function Contact() {
                       required
                       value={formData.contact}
                       onChange={handleChange}
+                      onFocus={() => setFocused('contact')}
+                      onBlur={() => setFocused(null)}
                       placeholder={selectedMethodData.placeholder}
-                      className={inputClass}
+                      className={inputClass('contact')}
                       inputMode={selectedMethod === 'whatsapp' ? 'tel' : 'text'}
                     />
                   </motion.div>
                 )}
               </AnimatePresence>
 
-              {/* Проект */}
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-muted-foreground">
+                <label className="mb-2 block text-sm font-light text-white/40">
                   {t.contact.project}
                 </label>
                 <textarea
                   name="project"
-                  rows={4}
+                  rows={5}
                   value={formData.project}
                   onChange={handleChange}
+                  onFocus={() => setFocused('project')}
+                  onBlur={() => setFocused(null)}
                   placeholder="Расскажите подробнее о вашем проекте или задаче"
-                  className={`${inputClass} resize-none`}
+                  className={`${inputClass('project')} resize-none`}
                 />
               </div>
 
-              {/* Кнопка отправки с усиленной пульсацией */}
               <motion.button
                 type="submit"
-                className={`group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-accent to-accent-hover px-6 py-3.5 text-sm font-medium text-white transition-all duration-300 hover:shadow-[0_12px_40px_-8px_rgba(59,130,246,0.7)] ${
-                  !isFormValid ? 'opacity-50 cursor-not-allowed shadow-none' : ''
+                className={`group relative w-full overflow-hidden rounded-full px-8 py-4 text-sm font-light tracking-wide text-white transition-all duration-500 ${
+                  isFormValid && !sent
+                    ? 'bg-white/10 hover:bg-white/15 hover:shadow-[0_0_60px_-12px_rgba(255,255,255,0.05)]'
+                    : 'cursor-not-allowed bg-white/5 text-white/20'
                 }`}
-                whileHover={isFormValid ? { scale: 1.02 } : {}}
-                whileTap={isFormValid ? { scale: 0.97 } : {}}
+                whileHover={isFormValid && !sent ? { scale: 1.01 } : {}}
+                whileTap={isFormValid && !sent ? { scale: 0.98 } : {}}
                 disabled={!isFormValid}
                 animate={
                   isFormValid && !sent
                     ? {
-                        scale: [1, 1.03, 1, 1.02, 1],
                         boxShadow: [
-                          '0 8px 30px -8px rgba(59,130,246,0.4)',
-                          '0 8px 50px -4px rgba(59,130,246,0.7)',
-                          '0 8px 30px -8px rgba(59,130,246,0.4)',
-                          '0 8px 45px -4px rgba(59,130,246,0.6)',
-                          '0 8px 30px -8px rgba(59,130,246,0.4)',
+                          '0 0 0 0 rgba(255,255,255,0)',
+                          '0 0 40px -8px rgba(255,255,255,0.05)',
+                          '0 0 0 0 rgba(255,255,255,0)',
                         ],
                       }
                     : {}
                 }
                 transition={{
-                  duration: 2.2,
+                  duration: 2.5,
                   repeat: isFormValid && !sent ? Infinity : 0,
                   ease: "easeInOut",
                 }}
               >
-                <span className="relative flex items-center justify-center gap-2">
+                <span className="relative flex items-center justify-center gap-3">
                   {sent ? (
                     <>
-                      <Check className="h-4 w-4" /> {t.contact.success}
+                      <Check className="h-4 w-4" />
+                      {t.contact.success}
                     </>
                   ) : (
                     <>
@@ -207,13 +245,13 @@ export function Contact() {
               </motion.button>
 
               {!selectedMethod && (
-                <p className="text-center text-xs text-muted-foreground">
+                <p className="text-center text-sm text-white/20">
                   Выберите способ связи
                 </p>
               )}
             </form>
           </div>
-        </Reveal>
+        </motion.div>
       </div>
     </section>
   )
