@@ -142,7 +142,7 @@ export function Services() {
             <div className="mb-6 inline-flex items-center gap-3">
               <span className="h-px w-8 bg-white/20" />
               <span className="text-xs font-light tracking-[0.3em] text-white/30 uppercase">
-                Services
+                Услуги
               </span>
             </div>
             <h2 className="text-4xl font-light leading-[1.1] tracking-[-0.02em] text-white sm:text-5xl lg:text-6xl">
