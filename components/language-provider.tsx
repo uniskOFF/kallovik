@@ -332,7 +332,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       lang,
       setLang,
       toggle,
-      t: translations[lang],
+      t: translations[lang] as TranslationDict,
     }),
     [lang, setLang, toggle]
   )
