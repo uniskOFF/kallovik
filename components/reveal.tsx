@@ -40,11 +40,6 @@ export function Reveal({
       x: direction === 'left' ? distance : direction === 'right' ? -distance : 0,
       scale: direction === 'scale' || direction === 'blur' ? 0.92 : 1,
       filter: direction === 'blur' ? `blur(${blur}px)` : 'blur(0px)',
-      transition: {
-        duration,
-        delay,
-        ease: 'easeOut',
-      },
     },
     visible: {
       opacity: 1,
@@ -52,15 +47,16 @@ export function Reveal({
       x: 0,
       scale: 1,
       filter: 'blur(0px)',
-      transition: {
-        duration,
-        delay,
-        ease: 'easeOut',
-        staggerChildren,
-        staggerDirection: staggerDirection === 'forward' ? 1 : -1,
-        delayChildren: delay,
-      },
     },
+  }
+
+  const transition = {
+    duration,
+    delay,
+    ease: "easeOut",
+    staggerChildren,
+    staggerDirection: staggerDirection === 'forward' ? 1 : -1,
+    delayChildren: delay,
   }
 
   return (
@@ -70,6 +66,7 @@ export function Reveal({
       initial="hidden"
       animate={isInView ? 'visible' : 'hidden'}
       variants={variants}
+      transition={transition}
       style={{ willChange: 'transform, opacity' }}
     >
       {children}
