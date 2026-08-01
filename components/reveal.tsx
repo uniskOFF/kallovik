@@ -9,7 +9,6 @@ interface RevealProps {
   delay?: number
   duration?: number
   direction?: 'up' | 'down' | 'left' | 'right' | 'scale' | 'blur'
-  type?: 'spring' | 'tween'
   staggerChildren?: number
   staggerDirection?: 'forward' | 'reverse'
   once?: boolean
@@ -24,7 +23,6 @@ export function Reveal({
   delay = 0,
   duration = 0.9,
   direction = 'up',
-  type = 'tween',
   staggerChildren = 0,
   staggerDirection = 'forward',
   once = true,
@@ -42,54 +40,28 @@ export function Reveal({
       x: direction === 'left' ? distance : direction === 'right' ? -distance : 0,
       scale: direction === 'scale' || direction === 'blur' ? 0.92 : 1,
       filter: direction === 'blur' ? `blur(${blur}px)` : 'blur(0px)',
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      x: 0,
-      scale: 1,
-      filter: 'blur(0px)',
-    },
-  }
-
-  const springVariants = {
-    hidden: {
-      opacity: 0,
-      y: direction === 'up' ? distance : direction === 'down' ? -distance : 0,
-      x: direction === 'left' ? distance : direction === 'right' ? -distance : 0,
-      scale: direction === 'scale' || direction === 'blur' ? 0.95 : 1,
-      filter: direction === 'blur' ? `blur(${blur}px)` : 'blur(0px)',
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      x: 0,
-      scale: 1,
-      filter: 'blur(0px)',
-    },
-  }
-
-  const finalVariants = type === 'spring' ? springVariants : variants
-
-  const transition = type === 'spring'
-    ? {
-        type: 'spring',
-        stiffness: 60,
-        damping: 25,
-        mass: 1,
+      transition: {
+        duration,
         delay,
-        staggerChildren,
-        staggerDirection: staggerDirection === 'forward' ? 1 : -1,
-        delayChildren: delay,
-      }
-    : {
+        ease: 'easeOut',
+      },
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      scale: 1,
+      filter: 'blur(0px)',
+      transition: {
         duration,
         delay,
         ease: 'easeOut',
         staggerChildren,
         staggerDirection: staggerDirection === 'forward' ? 1 : -1,
         delayChildren: delay,
-      }
+      },
+    },
+  }
 
   return (
     <motion.div
@@ -97,8 +69,7 @@ export function Reveal({
       className={className}
       initial="hidden"
       animate={isInView ? 'visible' : 'hidden'}
-      variants={finalVariants}
-      transition={transition}
+      variants={variants}
       style={{ willChange: 'transform, opacity' }}
     >
       {children}
@@ -138,7 +109,6 @@ export const ScaleIn = ({
   <Reveal
     direction="scale"
     delay={delay}
-    type="spring"
     duration={0.8}
   >
     {children}
@@ -160,7 +130,6 @@ export const Stagger = ({
     direction={direction}
     staggerChildren={stagger}
     delay={delay}
-    type="spring"
   >
     {children}
   </Reveal>
