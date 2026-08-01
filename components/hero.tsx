@@ -115,16 +115,11 @@ export function Hero() {
 
   const wordVariants = {
     hidden: { opacity: 0, y: 60, rotateX: 20 },
-    show: (i: number) => ({
+    show: {
       opacity: 1,
       y: 0,
       rotateX: 0,
-      transition: {
-        duration: 1.4,
-        delay: i * 0.15,
-        ease: "easeOut",
-      },
-    }),
+    },
   }
 
   const subtitleVariants = {
@@ -215,20 +210,20 @@ export function Hero() {
 
               <div className="relative">
                 <motion.div
-                  custom={0}
                   variants={wordVariants}
                   initial="hidden"
                   animate={isInView ? 'show' : 'hidden'}
+                  transition={{ duration: 1.4, delay: 0, ease: "easeOut" }}
                   className="text-[clamp(3.5rem,14vw,9rem)] font-light leading-[0.85] tracking-[-0.05em] text-white"
                 >
                   {t.hero.title1}
                 </motion.div>
 
                 <motion.div
-                  custom={1}
                   variants={wordVariants}
                   initial="hidden"
                   animate={isInView ? 'show' : 'hidden'}
+                  transition={{ duration: 1.4, delay: 0.15, ease: "easeOut" }}
                   className="relative text-[clamp(3.5rem,14vw,9rem)] font-light leading-[0.85] tracking-[-0.05em]"
                 >
                   <span className="bg-gradient-to-r from-[#3b82f6] via-[#8b5cf6] to-[#ec4899] bg-[length:300%_300%] bg-clip-text text-transparent animate-gradient-shine">
@@ -249,10 +244,10 @@ export function Hero() {
                 </motion.div>
 
                 <motion.div
-                  custom={2}
                   variants={wordVariants}
                   initial="hidden"
                   animate={isInView ? 'show' : 'hidden'}
+                  transition={{ duration: 1.4, delay: 0.3, ease: "easeOut" }}
                   className="text-[clamp(2.5rem,10vw,6.5rem)] font-light leading-[0.85] tracking-[-0.05em] text-white/60"
                 >
                   {t.hero.title3}
