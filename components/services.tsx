@@ -2,13 +2,13 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { Globe, Bot, Cog, Brain, Rocket, Sparkles, Info, X, type LucideIcon } from 'lucide-react'
+import { Globe, Bot, Cog, Brain, Rocket, Sparkles, ArrowRight, type LucideIcon } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
 import { Reveal } from '@/components/reveal'
 
 const ICONS: LucideIcon[] = [Globe, Bot, Cog, Brain, Rocket, Sparkles]
 
-// Компонент иконки с анимацией
+// Компонент иконки с анимацией — все строго одинакового размера
 const IconWithAnimation = ({ 
   icon: Icon, 
   isExpanded,
@@ -16,6 +16,9 @@ const IconWithAnimation = ({
   icon: LucideIcon, 
   isExpanded: boolean,
 }) => {
+  // Все иконки теперь имеют строго одинаковый размер и положение
+  const iconSize = "h-5 w-5"
+  
   if (Icon === Rocket) {
     return (
       <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80 overflow-visible">
@@ -25,7 +28,7 @@ const IconWithAnimation = ({
           animate={isExpanded ? { y: -40, opacity: 0 } : { y: 0, opacity: 1 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <Icon className="h-5 w-5" />
+          <Icon className={iconSize} />
         </motion.div>
         {isExpanded && (
           <motion.div
@@ -48,7 +51,7 @@ const IconWithAnimation = ({
           animate={isExpanded ? { rotate: 360 } : { rotate: 0 }}
           transition={{ duration: 4, ease: "linear", repeat: isExpanded ? Infinity : 0 }}
         >
-          <Icon className="h-5 w-5" />
+          <Icon className={iconSize} />
         </motion.div>
       </div>
     )
@@ -63,7 +66,7 @@ const IconWithAnimation = ({
           animate={isExpanded ? { scale: [1, 1.15, 1] } : { scale: 1 }}
           transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1], repeat: isExpanded ? Infinity : 0 }}
         >
-          <Icon className="h-5 w-5" />
+          <Icon className={iconSize} />
         </motion.div>
       </div>
     )
@@ -78,7 +81,7 @@ const IconWithAnimation = ({
           animate={isExpanded ? { rotate: [0, 8, -8, 5, -5, 0] } : { rotate: 0 }}
           transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1], repeat: isExpanded ? Infinity : 0 }}
         >
-          <Icon className="h-5 w-5" />
+          <Icon className={iconSize} />
         </motion.div>
       </div>
     )
@@ -93,7 +96,7 @@ const IconWithAnimation = ({
           animate={isExpanded ? { rotate: [0, 12, -10, 8, -6, 0] } : { rotate: 0 }}
           transition={{ duration: 2, ease: [0.16, 1, 0.3, 1], repeat: isExpanded ? Infinity : 0 }}
         >
-          <Icon className="h-5 w-5" />
+          <Icon className={iconSize} />
         </motion.div>
       </div>
     )
@@ -108,7 +111,7 @@ const IconWithAnimation = ({
           animate={isExpanded ? { scale: [1, 1.12, 0.88, 1], rotate: [0, 15, -15, 0] } : { scale: 1, rotate: 0 }}
           transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1], repeat: isExpanded ? Infinity : 0 }}
         >
-          <Icon className="h-5 w-5" />
+          <Icon className={iconSize} />
         </motion.div>
       </div>
     )
@@ -116,7 +119,7 @@ const IconWithAnimation = ({
 
   return (
     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80">
-      <Icon className="h-5 w-5" />
+      <Icon className={iconSize} />
     </div>
   )
 }
@@ -194,32 +197,19 @@ export function Services() {
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <div className="relative p-8 sm:p-10">
+                  <div className="relative flex h-full flex-col p-8 sm:p-10">
                     <div className="flex items-start justify-between">
                       <IconWithAnimation 
                         icon={Icon} 
                         isExpanded={isExpanded}
                       />
-
-                      <button
-                        type="button"
-                        onClick={() => toggleExpand(i)}
-                        className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/8 text-white/40 transition-all duration-500 hover:border-white/20 hover:text-white/80"
-                        aria-label={isExpanded ? 'Свернуть' : 'Подробнее'}
-                      >
-                        {isExpanded ? (
-                          <X className="h-4 w-4" />
-                        ) : (
-                          <Info className="h-4 w-4" />
-                        )}
-                      </button>
                     </div>
 
                     <h3 className="relative mt-6 text-2xl font-light tracking-[-0.02em] text-white/90">
                       {item.title}
                     </h3>
 
-                    <div className="relative mt-4 min-h-[4.5rem] overflow-hidden">
+                    <div className="relative mt-4 flex-1 min-h-[4.5rem] overflow-hidden">
                       <AnimatePresence mode="wait">
                         {isExpanded ? (
                           <motion.div
@@ -228,6 +218,7 @@ export function Services() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -16 }}
                             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                            className="absolute inset-0"
                           >
                             <p className="text-base leading-relaxed text-white/60">
                               {item.tip}
@@ -249,6 +240,7 @@ export function Services() {
                       </AnimatePresence>
                     </div>
 
+                    {/* Кнопка всегда внизу */}
                     <motion.button
                       type="button"
                       onClick={() => toggleExpand(i)}
@@ -264,15 +256,7 @@ export function Services() {
                       ) : (
                         <>
                           Узнать больше
-                          <svg
-                            className="h-4 w-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                          </svg>
+                          <ArrowRight className="h-4 w-4" />
                         </>
                       )}
                     </motion.button>
