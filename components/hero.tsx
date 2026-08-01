@@ -133,6 +133,7 @@ export function Hero() {
 
   return (
     <section
+      id="home"
       ref={containerRef}
       className="relative min-h-[100dvh] w-full overflow-hidden bg-[#05080f]"
     >

@@ -129,7 +129,7 @@ export function SiteHeader() {
             href="#contacts"
             className="hidden rounded-full bg-white/10 px-5 py-2.5 text-sm font-light text-white/90 transition-all duration-500 hover:bg-white/20 hover:shadow-[0_0_40px_-12px_rgba(255,255,255,0.08)] sm:inline-block"
           >
-            {t.nav.cta}
+            Оставить заявку
           </a>
 
           <button
@@ -176,7 +176,7 @@ export function SiteHeader() {
                   onClick={() => setOpen(false)}
                   className="mt-2 block rounded-full bg-white/10 px-4 py-3 text-center text-sm font-light text-white/90 transition-all duration-300 hover:bg-white/20"
                 >
-                  {t.nav.cta}
+                  Оставить заявку
                 </a>
               </li>
             </ul>
