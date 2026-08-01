@@ -4,23 +4,21 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { Globe, Bot, Cog, Brain, Rocket, Sparkles, ArrowRight, type LucideIcon } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
-import { Reveal } from '@/components/reveal'
 
 const ICONS: LucideIcon[] = [Globe, Bot, Cog, Brain, Rocket, Sparkles]
 
-// Компонент иконки с анимацией — все строго одинакового размера
-const IconWithAnimation = ({ 
-  icon: Icon, 
+const IconWithAnimation = ({
+  icon: Icon,
   isExpanded,
-}: { 
-  icon: LucideIcon, 
+}: {
+  icon: LucideIcon,
   isExpanded: boolean,
 }) => {
   const iconSize = "h-5 w-5"
-  
+
   if (Icon === Rocket) {
     return (
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80 overflow-visible">
+      <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/80 overflow-visible">
         <motion.div
           className="flex items-center justify-center"
           initial={{ y: 0, opacity: 1 }}
@@ -118,13 +116,10 @@ const IconWithAnimation = ({
 export function Services() {
   const { t } = useLanguage()
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   const toggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index)
-  }
-
-  const handleMouseLeave = () => {
-    setExpandedIndex(null)
   }
 
   return (
@@ -163,6 +158,7 @@ export function Services() {
           {t.services.items.map((item, i) => {
             const Icon = ICONS[i]
             const isExpanded = expandedIndex === i
+            const isHovered = hoveredIndex === i
             const isOdd = i % 2 === 1
 
             return (
@@ -170,33 +166,45 @@ export function Services() {
                 key={item.title}
                 initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: 0.8, 
+                transition={{
+                  duration: 0.8,
                   delay: i * 0.08,
                   ease: [0.16, 1, 0.3, 1]
                 }}
                 viewport={{ once: true }}
                 className={`relative ${isOdd ? 'lg:mt-12' : ''}`}
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
               >
                 <motion.div
                   className={`group relative h-full overflow-hidden rounded-3xl border transition-all duration-700 ${
                     isExpanded
-                      ? 'border-white/20 bg-white/[0.04] shadow-[0_0_80px_-20px_rgba(255,255,255,0.04)]'
-                      : 'border-white/[0.04] bg-white/[0.02] hover:border-white/10 hover:shadow-[0_0_60px_-20px_rgba(255,255,255,0.03)]'
+                      ? 'border-accent/40 bg-white/[0.04] shadow-[0_0_80px_-20px_rgba(59,130,246,0.08)]'
+                      : 'border-white/[0.04] bg-white/[0.02] hover:border-white/10'
                   }`}
-                  onMouseLeave={handleMouseLeave}
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.4 }}
                 >
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/0 to-purple-500/0 opacity-0 transition-opacity duration-700 group-hover:from-accent/5 group-hover:to-purple-500/5 group-hover:opacity-100" />
+
+                  <div className="absolute -inset-px rounded-3xl opacity-0 transition-opacity duration-700 group-hover:opacity-100" style={{
+                    background: 'linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08), rgba(34,211,238,0.04))',
+                  }} />
+
+                  <div className="absolute inset-0 rounded-3xl border border-white/[0.04] transition-all duration-700 group-hover:border-accent/20" />
+
                   <div className="relative flex h-full flex-col p-8 sm:p-10">
                     <div className="flex items-start justify-between">
-                      <IconWithAnimation 
-                        icon={Icon} 
-                        isExpanded={isExpanded}
-                      />
+                      <div className="relative">
+                        <div className="absolute inset-0 rounded-full bg-accent/10 blur-xl opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+                        <IconWithAnimation
+                          icon={Icon}
+                          isExpanded={isExpanded}
+                        />
+                      </div>
                     </div>
 
-                    <h3 className="relative mt-6 text-2xl font-light tracking-[-0.02em] text-white/90">
+                    <h3 className="relative mt-6 text-2xl font-light tracking-[-0.02em] text-white/90 transition-colors duration-700 group-hover:text-white">
                       {item.title}
                     </h3>
 
@@ -223,7 +231,7 @@ export function Services() {
                             exit={{ opacity: 0, y: -16 }}
                             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                           >
-                            <p className="text-base leading-relaxed text-white/40">
+                            <p className="text-base leading-relaxed text-white/40 transition-colors duration-700 group-hover:text-white/60">
                               {item.desc}
                             </p>
                           </motion.div>
@@ -235,8 +243,8 @@ export function Services() {
                       type="button"
                       onClick={() => toggleExpand(i)}
                       className={`mt-6 flex items-center gap-2 text-sm font-light transition-all duration-500 ${
-                        isExpanded 
-                          ? 'text-white/30 hover:text-white/60' 
+                        isExpanded
+                          ? 'text-white/30 hover:text-white/60'
                           : 'text-white/40 hover:text-white/80'
                       }`}
                       whileHover={{ x: isExpanded ? 0 : 4 }}

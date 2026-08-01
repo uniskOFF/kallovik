@@ -3,11 +3,9 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'motion/react'
-import { ArrowUpRight, Sparkles } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import { useLanguage } from '@/components/language-provider'
-import { Reveal } from '@/components/reveal'
 
-// Временные заглушки вместо фотографий
 const PLACEHOLDER_IMAGES = [
   '/placeholder.svg',
   '/placeholder.svg',
@@ -21,12 +19,11 @@ export function Portfolio() {
   const [active, setActive] = useState(0)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
-  // Берём только первые 5 элементов, чтобы сетка была ровной (3+2)
-  const items = t.portfolio.items.slice(0, 5).map((it, i) => ({ 
-    ...it, 
-    img: PLACEHOLDER_IMAGES[i % PLACEHOLDER_IMAGES.length] 
+  const items = t.portfolio.items.slice(0, 5).map((it, i) => ({
+    ...it,
+    img: PLACEHOLDER_IMAGES[i % PLACEHOLDER_IMAGES.length]
   }))
-  
+
   const filters = t.portfolio.filters
   const filtered = active === 0 ? items : items.filter((it) => it.cat === filters[active])
 
@@ -35,6 +32,7 @@ export function Portfolio() {
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-accent/5 blur-[180px]" />
         <div className="absolute bottom-0 right-0 h-[500px] w-[500px] rounded-full bg-purple-500/5 blur-[160px]" />
+        <div className="absolute top-0 left-0 h-[500px] w-[500px] rounded-full bg-cyan-500/4 blur-[160px]" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
@@ -99,8 +97,8 @@ export function Portfolio() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ 
-                  duration: 0.6, 
+                transition={{
+                  duration: 0.6,
                   delay: i * 0.05,
                   ease: [0.16, 1, 0.3, 1]
                 }}
@@ -109,13 +107,22 @@ export function Portfolio() {
                 }`}
                 onMouseEnter={() => setHoveredIndex(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
+                style={{ perspective: '1200px' }}
               >
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#0a0f1a] flex items-center justify-center">
-                  {/* Заглушка с надписью Soon... */}
+                <motion.div
+                  className="relative aspect-[4/3] w-full overflow-hidden bg-[#0a0f1a]"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-purple-500/10 opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+
                   <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-[#0a0f1a] via-[#0f1728] to-[#0a0f1a]">
                     <div className="relative">
                       <div className="absolute inset-0 blur-2xl bg-accent/20 rounded-full" />
-                      <Sparkles className="h-12 w-12 text-accent/30 relative z-10 animate-pulse" />
+                      <div className="relative h-12 w-12 rounded-full border border-accent/20 bg-accent/10 flex items-center justify-center">
+                        <div className="h-2 w-2 rounded-full bg-accent/40 animate-pulse" />
+                      </div>
                     </div>
                     <span className="mt-4 text-2xl font-light tracking-[0.3em] text-white/20">
                       Soon...
@@ -124,36 +131,45 @@ export function Portfolio() {
                       {item.title}
                     </span>
                   </div>
-                  
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#05080f] via-[#05080f]/40 to-transparent opacity-60" />
-                </div>
 
-                <div className="absolute bottom-0 left-0 right-0 p-8">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#05080f] via-[#05080f]/60 to-transparent opacity-60 transition-opacity duration-700 group-hover:opacity-40" />
+
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/0 to-accent/5 opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.1 }}
-                    className="relative"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="mb-2 inline-block rounded-full border border-white/10 px-3 py-1 text-xs font-light text-white/50 backdrop-blur-sm">
-                          {item.tag}
-                        </div>
-                        <h3 className="text-2xl font-light tracking-[-0.02em] text-white">
-                          {item.title}
-                        </h3>
+                    className="absolute inset-0 border border-white/0 rounded-3xl transition-all duration-700 group-hover:border-white/10"
+                  />
+
+                  <div className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100">
+                    <div className="absolute top-0 left-0 h-1/2 w-1/2 bg-gradient-to-br from-white/5 to-transparent blur-2xl" />
+                    <div className="absolute bottom-0 right-0 h-1/2 w-1/2 bg-gradient-to-tl from-purple-500/10 to-transparent blur-2xl" />
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  className="absolute bottom-0 left-0 right-0 p-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 }}
+                >
+                  <div className="relative flex items-center justify-between">
+                    <div>
+                      <div className="mb-2 inline-block rounded-full border border-white/10 px-3 py-1 text-xs font-light text-white/50 backdrop-blur-sm transition-colors duration-500 group-hover:border-white/20 group-hover:text-white/70">
+                        {item.tag}
                       </div>
-                      <motion.div
-                        className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm transition-all duration-500 group-hover:border-white/40 group-hover:bg-white/10"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <ArrowUpRight className="h-5 w-5 text-white/60 transition-colors duration-500 group-hover:text-white" />
-                      </motion.div>
+                      <h3 className="text-2xl font-light tracking-[-0.02em] text-white transition-colors duration-500 group-hover:text-white/90">
+                        {item.title}
+                      </h3>
                     </div>
-                  </motion.div>
-                </div>
+                    <motion.div
+                      className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm transition-all duration-500 group-hover:border-white/40 group-hover:bg-white/10"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <ArrowUpRight className="h-5 w-5 text-white/60 transition-colors duration-500 group-hover:text-white" />
+                    </motion.div>
+                  </div>
+                </motion.div>
 
                 <motion.div
                   className="absolute inset-0 rounded-3xl border border-white/0 transition-all duration-700 group-hover:border-white/10"
