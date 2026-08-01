@@ -10,7 +10,6 @@ interface RevealProps {
   duration?: number
   direction?: 'up' | 'down' | 'left' | 'right' | 'scale' | 'blur'
   staggerChildren?: number
-  staggerDirection?: 'forward' | 'reverse'
   once?: boolean
   amount?: number
   blur?: number
@@ -24,7 +23,6 @@ export function Reveal({
   duration = 0.9,
   direction = 'up',
   staggerChildren = 0,
-  staggerDirection = 'forward',
   once = true,
   amount = 0.15,
   blur = 12,
@@ -53,9 +51,8 @@ export function Reveal({
   const transition = {
     duration,
     delay,
-    ease: "easeOut",
+    ease: [0.16, 1, 0.3, 1],
     staggerChildren,
-    staggerDirection: staggerDirection === 'forward' ? 1 : -1,
     delayChildren: delay,
   }
 
@@ -73,8 +70,6 @@ export function Reveal({
     </motion.div>
   )
 }
-
-export const Slide = Reveal
 
 export const FadeIn = ({
   children,
