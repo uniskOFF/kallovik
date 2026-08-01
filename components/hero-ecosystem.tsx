@@ -40,8 +40,8 @@ export function HeroEcosystem() {
   const springX = useSpring(mouseX, springConfig)
   const springY = useSpring(mouseY, springConfig)
 
-  const rotateX = useTransform(springY, [-1, 1], [8, -8])
-  const rotateY = useTransform(springX, [-1, 1], [-8, 8])
+  const rotateX = useTransform(springY, [-1, 1], [10, -10])
+  const rotateY = useTransform(springX, [-1, 1], [-10, 10])
   const scale = useTransform(springX, [-1, 1], [1, 1.03])
 
   useEffect(() => {
@@ -111,6 +111,11 @@ export function HeroEcosystem() {
                 <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.2" />
                 <stop offset="100%" stopColor="#22d3ee" stopOpacity="0.08" />
               </linearGradient>
+              <radialGradient id="coreGlow">
+                <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.15" />
+                <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.08" />
+                <stop offset="100%" stopColor="#22d3ee" stopOpacity="0" />
+              </radialGradient>
             </defs>
 
             <motion.circle
