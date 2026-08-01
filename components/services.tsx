@@ -173,7 +173,7 @@ export function Services() {
                 className={`relative ${isOdd ? 'lg:mt-12' : ''}`}
               >
                 <motion.div
-                  className="group relative flex h-full flex-col rounded-3xl border border-white/[0.06] bg-white/[0.025] p-10 backdrop-blur-sm transition-all duration-700 hover:-translate-y-2 hover:border-accent/30 hover:bg-white/[0.04] hover:shadow-[0_20px_80px_-20px_rgba(59,130,246,0.08)]"
+                  className="group relative flex h-full flex-col rounded-3xl border border-white/[0.06] bg-white/[0.025] p-8 sm:p-10 backdrop-blur-sm transition-all duration-700 hover:-translate-y-2 hover:border-accent/30 hover:bg-white/[0.04] hover:shadow-[0_20px_80px_-20px_rgba(59,130,246,0.08)]"
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.4 }}
                   onMouseLeave={() => {
@@ -197,7 +197,7 @@ export function Services() {
                       </span>
                     </div>
 
-                    <h3 className="mt-8 text-[28px] font-light tracking-[-0.03em] text-white/90 transition-colors duration-700 group-hover:text-white">
+                    <h3 className="mt-8 text-[clamp(1.5rem,2.5vw,2.2rem)] font-light tracking-[-0.03em] text-white/90 transition-colors duration-700 group-hover:text-white">
                       {item.title}
                     </h3>
 
@@ -213,7 +213,7 @@ export function Services() {
                             exit={{ opacity: 0, y: -12 }}
                             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                           >
-                            <p className="text-base leading-relaxed text-white/60">
+                            <p className="text-[clamp(0.9rem,1.2vw,1rem)] leading-relaxed text-white/60">
                               {item.tip}
                             </p>
                           </motion.div>
@@ -225,7 +225,7 @@ export function Services() {
                             exit={{ opacity: 0, y: -12 }}
                             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                           >
-                            <p className="text-base leading-relaxed text-white/45 transition-colors duration-700 group-hover:text-white/60">
+                            <p className="text-[clamp(0.9rem,1.2vw,1rem)] leading-relaxed text-white/45 transition-colors duration-700 group-hover:text-white/60">
                               {item.desc}
                             </p>
                           </motion.div>

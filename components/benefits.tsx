@@ -155,7 +155,7 @@ export function Benefits() {
                 viewport={{ once: true }}
               >
                 <motion.div
-                  className="group relative flex h-full flex-col rounded-3xl border border-white/[0.06] bg-white/[0.025] p-10 backdrop-blur-sm transition-all duration-700 hover:-translate-y-2 hover:border-accent/30 hover:bg-white/[0.04] hover:shadow-[0_20px_80px_-20px_rgba(59,130,246,0.08)]"
+                  className="group relative flex h-full flex-col rounded-3xl border border-white/[0.06] bg-white/[0.025] p-8 sm:p-10 backdrop-blur-sm transition-all duration-700 hover:-translate-y-2 hover:border-accent/30 hover:bg-white/[0.04] hover:shadow-[0_20px_80px_-20px_rgba(59,130,246,0.08)]"
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.4 }}
                 >
@@ -173,13 +173,13 @@ export function Benefits() {
                       </span>
                     </div>
 
-                    <h3 className="mt-8 text-[28px] font-light tracking-[-0.03em] text-white/90 transition-colors duration-700 group-hover:text-white">
+                    <h3 className="mt-8 text-[clamp(1.5rem,2.5vw,2.2rem)] font-light tracking-[-0.03em] text-white/90 transition-colors duration-700 group-hover:text-white">
                       {item.title}
                     </h3>
 
                     <div className="mt-4 h-px w-12 bg-white/10 transition-all duration-700 group-hover:w-16 group-hover:bg-accent/30" />
 
-                    <p className="mt-6 flex-1 text-base leading-8 text-white/45 transition-colors duration-700 group-hover:text-white/60">
+                    <p className="mt-6 flex-1 text-[clamp(0.9rem,1.2vw,1rem)] leading-relaxed text-white/45 transition-colors duration-700 group-hover:text-white/60">
                       {item.desc}
                     </p>
                   </div>
