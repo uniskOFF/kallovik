@@ -26,7 +26,7 @@ export function Portfolio() {
   const filtered = active === 0 ? items : items.filter((it) => it.cat === filters[active])
 
   return (
-    <section className="relative py-32 sm:py-40 overflow-hidden">
+    <section id="cases" className="relative py-32 sm:py-40 overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-accent/5 blur-[180px]" />
         <div className="absolute bottom-0 right-0 h-[500px] w-[500px] rounded-full bg-purple-500/5 blur-[160px]" />
