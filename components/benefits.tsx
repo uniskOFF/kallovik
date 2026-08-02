@@ -138,7 +138,7 @@ export function Benefits() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 auto-rows-fr">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {t.benefits.items.map((item, i) => {
             const Icon = ICONS[i]
 
@@ -155,7 +155,7 @@ export function Benefits() {
                 viewport={{ once: true }}
               >
                 <motion.div
-                  className="group relative flex h-full min-h-[260px] flex-col rounded-3xl border border-white/[0.06] bg-white/[0.025] p-8 backdrop-blur-sm transition-all duration-700 hover:-translate-y-2 hover:border-accent/30 hover:bg-white/[0.04] hover:shadow-[0_20px_80px_-20px_rgba(59,130,246,0.08)] sm:p-10"
+                  className="group relative flex h-full flex-col rounded-3xl border border-white/[0.06] bg-white/[0.025] p-8 transition-all duration-700 hover:-translate-y-2 hover:border-accent/30 hover:bg-white/[0.04] hover:shadow-[0_20px_80px_-20px_rgba(59,130,246,0.08)] sm:p-10"
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.4 }}
                 >
@@ -168,7 +168,7 @@ export function Benefits() {
                   <div className="relative flex flex-1 flex-col">
                     <div className="flex items-start justify-between">
                       <AnimatedIcon icon={Icon} index={i} />
-                      <span className="text-[90px] font-light leading-none text-white/5 transition-colors duration-700 group-hover:text-white/10">
+                      <span className="text-[80px] font-light leading-none text-white/5 transition-colors duration-700 group-hover:text-white/10 md:text-[90px]">
                         0{i + 1}
                       </span>
                     </div>

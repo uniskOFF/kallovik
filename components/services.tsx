@@ -153,7 +153,7 @@ export function Services() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {t.services.items.map((item, i) => {
             const Icon = ICONS[i]
             const isExpanded = expandedIndex === i
@@ -173,7 +173,7 @@ export function Services() {
                 className={`relative ${isOdd ? 'lg:mt-12' : ''}`}
               >
                 <motion.div
-                  className="group relative flex h-full min-h-[280px] flex-col rounded-3xl border border-white/[0.06] bg-white/[0.025] p-8 backdrop-blur-sm transition-all duration-700 hover:-translate-y-2 hover:border-accent/30 hover:bg-white/[0.04] hover:shadow-[0_20px_80px_-20px_rgba(59,130,246,0.08)] sm:p-10"
+                  className="group relative flex h-full flex-col rounded-3xl border border-white/[0.06] bg-white/[0.025] p-8 transition-all duration-700 hover:-translate-y-2 hover:border-accent/30 hover:bg-white/[0.04] hover:shadow-[0_20px_80px_-20px_rgba(59,130,246,0.08)] sm:p-10"
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.4 }}
                   onMouseLeave={() => {
@@ -192,7 +192,7 @@ export function Services() {
                         icon={Icon}
                         isExpanded={isExpanded}
                       />
-                      <span className="text-7xl font-light text-white/5 transition-colors duration-700 group-hover:text-white/10">
+                      <span className="text-6xl font-light text-white/5 transition-colors duration-700 group-hover:text-white/10 sm:text-7xl">
                         0{i + 1}
                       </span>
                     </div>
