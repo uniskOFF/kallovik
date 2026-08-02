@@ -96,7 +96,7 @@ const translations = {
     },
     about: {
       title: 'Почему нам доверяют',
-      subtitle: 'Мы работаем как технологический партнёр, а не как подрядчик.',
+      subtitle: 'Мы работаем как технологический партнёр, а не как подрядчик. Погружаемся в задачи клиентов и создаём решения, которые действительно работают.',
       label: 'О нас',
       items: [
         { title: 'Индивидуальный подход', desc: 'Погружаемся в задачу и предлагаем решение под вас.' },
@@ -233,7 +233,7 @@ const translations = {
     },
     about: {
       title: 'Why clients trust us',
-      subtitle: 'We work as a technology partner, not just a contractor.',
+      subtitle: 'We work as a technology partner, not just a contractor. We dive into the task and craft a solution that really works.',
       label: 'About',
       items: [
         { title: 'Personal approach', desc: 'We dive into the task and craft a solution for you.' },

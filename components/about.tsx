@@ -77,9 +77,7 @@ export function About() {
               viewport={{ once: true }}
             >
               <p className="text-base leading-relaxed text-white/40 sm:text-lg">
-                Мы работаем как технологический партнёр, а не как подрядчик. 
-                Погружаемся в задачи клиентов и создаём решения, которые 
-                действительно работают.
+                {t.about.subtitle}
               </p>
             </motion.div>
           </div>
