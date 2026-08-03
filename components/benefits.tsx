@@ -7,12 +7,12 @@ import { useLanguage } from '@/components/language-provider'
 
 const ICONS: LucideIcon[] = [TrendingUp, Award, Clock, Maximize2]
 
-const AnimatedIcon = ({ 
-  icon: Icon, 
-  index 
-}: { 
-  icon: LucideIcon, 
-  index: number 
+const AnimatedIcon = ({
+  icon: Icon,
+  index
+}: {
+  icon: LucideIcon,
+  index: number
 }) => {
   if (Icon === TrendingUp) {
     return (
@@ -173,15 +173,19 @@ export function Benefits() {
                       </span>
                     </div>
 
-                    <h3 className="mt-6 text-xl font-light tracking-[-0.02em] text-white/90 transition-colors duration-700 group-hover:text-white sm:text-2xl">
-                      {item.title}
-                    </h3>
+                    <div className="mt-6 min-h-[80px] sm:min-h-[100px]">
+                      <h3 className="text-xl font-light tracking-[-0.02em] text-white/90 transition-colors duration-700 group-hover:text-white sm:text-2xl">
+                        {item.title}
+                      </h3>
+                    </div>
 
                     <div className="mt-3 h-px w-10 bg-white/10 transition-all duration-700 group-hover:w-14 group-hover:bg-accent/30" />
 
-                    <p className="mt-4 flex-1 text-sm leading-relaxed text-white/45 transition-colors duration-700 group-hover:text-white/60 sm:text-base">
-                      {item.desc}
-                    </p>
+                    <div className="mt-4 flex-1">
+                      <p className="text-sm leading-relaxed text-white/45 transition-colors duration-700 group-hover:text-white/60 sm:text-base">
+                        {item.desc}
+                      </p>
+                    </div>
                   </div>
                 </motion.div>
               </motion.div>
