@@ -26,7 +26,7 @@ export function Hero() {
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
   const glowRadius = useMotionValue(600)
-  const glowPosition = useMotionTemplate`radial-gradient(circle ${glowRadius}px at ${mouseX}px ${mouseY}px, rgba(59, 130, 246, 0.12) 0%, rgba(139, 92, 246, 0.06) 30%, transparent 70%)`
+  const glowPosition = useMotionTemplate`radial-gradient(circle ${glowRadius}px at ${mouseX}px ${mouseY}px, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.04) 30%, transparent 70%)`
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -74,38 +74,37 @@ export function Hero() {
       ctx.clearRect(0, 0, width, height)
 
       const particles: { x: number; y: number; size: number; speed: number; opacity: number; color: string }[] = []
-      const count = 100
+      const count = 60
 
       const colors = [
-        'rgba(59, 130, 246, 0.5)',
-        'rgba(139, 92, 246, 0.4)',
-        'rgba(34, 211, 238, 0.3)',
-        'rgba(96, 165, 250, 0.3)',
-        'rgba(99, 102, 241, 0.2)',
+        'rgba(59, 130, 246, 0.3)',
+        'rgba(139, 92, 246, 0.2)',
+        'rgba(34, 211, 238, 0.15)',
+        'rgba(96, 165, 250, 0.2)',
       ]
 
       for (let i = 0; i < count; i++) {
         const x = (i * 137.5 + Math.random() * 20) % width
         const y = (i * 97.3 + Math.random() * 20) % height
-        const size = 0.5 + (i % 5) * 0.6
-        const speed = 0.1 + (i % 6) * 0.06
-        const opacity = 0.05 + (i % 12) * 0.04
+        const size = 0.5 + (i % 4) * 0.5
+        const speed = 0.08 + (i % 5) * 0.05
+        const opacity = 0.03 + (i % 10) * 0.03
         const color = colors[i % colors.length]
         particles.push({ x, y, size, speed, opacity, color })
       }
 
       particles.forEach((p, i) => {
-        const x = p.x + Math.sin(time * p.speed + i * 0.7) * 4
-        const y = p.y + Math.cos(time * p.speed * 0.7 + i * 0.5) * 4
-        const opacity = p.opacity + Math.sin(time * p.speed + i * 0.3) * 0.03
+        const x = p.x + Math.sin(time * p.speed + i * 0.7) * 3
+        const y = p.y + Math.cos(time * p.speed * 0.7 + i * 0.5) * 3
+        const opacity = p.opacity + Math.sin(time * p.speed + i * 0.3) * 0.02
 
         ctx.beginPath()
         ctx.arc(x, y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = p.color.replace('0.', `${Math.max(0.02, Math.min(0.5, opacity))}.`)
+        ctx.fillStyle = p.color.replace('0.', `${Math.max(0.01, Math.min(0.3, opacity))}.`)
         ctx.fill()
       })
 
-      time += 0.003
+      time += 0.002
       animationId = requestAnimationFrame(drawParticles)
     }
 
@@ -161,15 +160,7 @@ export function Hero() {
           className="absolute inset-0"
           style={{
             background:
-              'radial-gradient(ellipse 70% 50% at 30% 20%, rgba(59,130,246,0.15) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 70% 80%, rgba(139,92,246,0.12) 0%, transparent 50%), radial-gradient(ellipse 50% 30% at 50% 100%, rgba(34,211,238,0.08) 0%, transparent 40%)',
-          }}
-        />
-
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              'radial-gradient(circle at 20% 30%, rgba(59,130,246,0.08) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(139,92,246,0.06) 0%, transparent 40%), radial-gradient(circle at 50% 50%, rgba(34,211,238,0.04) 0%, transparent 50%)',
+              'radial-gradient(ellipse 70% 50% at 40% 20%, rgba(59,130,246,0.10) 0%, transparent 60%), radial-gradient(ellipse 50% 30% at 70% 80%, rgba(139,92,246,0.08) 0%, transparent 50%), radial-gradient(ellipse 40% 20% at 50% 100%, rgba(34,211,238,0.04) 0%, transparent 40%)',
           }}
         />
 
@@ -178,52 +169,34 @@ export function Hero() {
           style={{ background: glowPosition }}
         />
 
-        <div className="absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-[200px]" />
-        <div className="absolute left-[5%] top-[10%] h-[500px] w-[500px] rounded-full bg-purple-500/15 blur-[220px]" />
-        <div className="absolute right-[5%] bottom-[10%] h-[500px] w-[500px] rounded-full bg-cyan-500/12 blur-[220px]" />
-        <div className="absolute left-[30%] top-[5%] h-[300px] w-[300px] rounded-full bg-indigo-500/10 blur-[150px]" />
-        <div className="absolute right-[25%] bottom-[5%] h-[350px] w-[350px] rounded-full bg-blue-500/12 blur-[170px]" />
-
-        <div className="absolute top-[15%] right-[20%] h-px w-48 bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-        <div className="absolute bottom-[25%] left-[15%] h-px w-36 bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-        <div className="absolute top-[35%] left-[8%] h-20 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" />
-        <div className="absolute bottom-[40%] right-[10%] h-24 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" />
-
-        <motion.div
-          className="absolute top-[20%] left-[45%] h-[1px] w-[10%] bg-gradient-to-r from-transparent via-accent/30 to-transparent"
-          animate={{ opacity: [0, 1, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-[30%] right-[40%] h-[1px] w-[8%] bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"
-          animate={{ opacity: [0, 1, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        />
+        <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/8 blur-[200px]" />
+        <div className="absolute left-[10%] top-[15%] h-[400px] w-[400px] rounded-full bg-purple-500/10 blur-[200px]" />
+        <div className="absolute right-[10%] bottom-[15%] h-[400px] w-[400px] rounded-full bg-cyan-500/6 blur-[200px]" />
       </motion.div>
 
       <div className="relative z-10 mx-auto flex min-h-[100dvh] max-w-6xl flex-col justify-center px-6 py-20 sm:px-10 lg:px-14">
-        <div className="flex flex-col items-start justify-center">
+        <div className="flex flex-col items-start justify-center max-w-4xl">
           <motion.div
             variants={titleVariants}
             initial="hidden"
             animate={isInView ? 'show' : 'hidden'}
-            transition={{ duration: 1.6, ease: "easeOut" }}
-            className="relative w-full max-w-4xl"
+            transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-full"
           >
             <motion.div
-              className="absolute -left-6 top-0 h-24 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent"
+              className="absolute -left-6 top-0 h-20 w-px bg-gradient-to-b from-transparent via-white/15 to-transparent"
               initial={{ height: 0, opacity: 0 }}
-              animate={isInView ? { height: 96, opacity: 1 } : { height: 0, opacity: 0 }}
-              transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
+              animate={isInView ? { height: 80, opacity: 1 } : { height: 0, opacity: 0 }}
+              transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             />
 
-            <div className="relative space-y-1">
+            <div className="relative space-y-2">
               <motion.div
                 variants={wordVariants}
                 initial="hidden"
                 animate={isInView ? 'show' : 'hidden'}
-                transition={{ duration: 1.2, delay: 0, ease: "easeOut" }}
-                className="text-[clamp(2.8rem,8vw,5.5rem)] font-bold leading-[1.05] tracking-[-0.03em] text-white"
+                transition={{ duration: 1.2, delay: 0, ease: [0.16, 1, 0.3, 1] }}
+                className="text-[clamp(3rem,9vw,6.5rem)] font-light leading-[1.05] tracking-[-0.04em] text-white"
               >
                 {t.hero.title1}
               </motion.div>
@@ -232,17 +205,17 @@ export function Hero() {
                 variants={wordVariants}
                 initial="hidden"
                 animate={isInView ? 'show' : 'hidden'}
-                transition={{ duration: 1.2, delay: 0.1, ease: "easeOut" }}
-                className="text-[clamp(2.8rem,8vw,5.5rem)] font-bold leading-[1.05] tracking-[-0.03em]"
+                transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-[clamp(3rem,9vw,6.5rem)] font-light leading-[1.05] tracking-[-0.04em]"
               >
                 <span className="bg-gradient-to-r from-[#3b82f6] via-[#8b5cf6] to-[#22d3ee] bg-[length:300%_300%] bg-clip-text text-transparent animate-gradient-shine">
                   {t.hero.title2}
                 </span>
                 <motion.span
-                  className="absolute inset-0 blur-3xl opacity-25 bg-gradient-to-r from-[#3b82f6] via-[#8b5cf6] to-[#22d3ee] animate-gradient-shine"
+                  className="absolute inset-0 blur-3xl opacity-20 bg-gradient-to-r from-[#3b82f6] via-[#8b5cf6] to-[#22d3ee] animate-gradient-shine"
                   style={{ backgroundSize: '300% 300%' }}
                   animate={{
-                    opacity: [0.1, 0.3, 0.1],
+                    opacity: [0.08, 0.25, 0.08],
                   }}
                   transition={{
                     duration: 4,
@@ -256,8 +229,8 @@ export function Hero() {
                 variants={wordVariants}
                 initial="hidden"
                 animate={isInView ? 'show' : 'hidden'}
-                transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
-                className="text-[clamp(2.2rem,6vw,4.2rem)] font-bold leading-[1.05] tracking-[-0.03em] text-white/50"
+                transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="text-[clamp(2.4rem,7vw,5rem)] font-light leading-[1.05] tracking-[-0.04em] text-white/40"
               >
                 {t.hero.title3}
               </motion.div>
@@ -267,10 +240,10 @@ export function Hero() {
               variants={subtitleVariants}
               initial="hidden"
               animate={isInView ? 'show' : 'hidden'}
-              transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-              className="mt-6 max-w-lg"
+              transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-8 max-w-md"
             >
-              <p className="text-base font-medium leading-relaxed text-white/40 sm:text-lg">
+              <p className="text-base font-light leading-relaxed text-white/35 sm:text-lg">
                 {t.hero.subtitle}
               </p>
             </motion.div>
@@ -279,12 +252,12 @@ export function Hero() {
               variants={buttonVariants}
               initial="hidden"
               animate={isInView ? 'show' : 'hidden'}
-              transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="mt-10 flex flex-wrap items-center gap-4"
             >
               <motion.a
                 href="#contacts"
-                className="group relative overflow-hidden rounded-full bg-gradient-to-r from-accent to-purple-500 px-8 py-3.5 text-sm font-medium text-white shadow-[0_8px_30px_-8px_rgba(59,130,246,0.6)] transition-all duration-500 hover:shadow-[0_12px_50px_-8px_rgba(59,130,246,0.8)] hover:scale-[1.02]"
+                className="group relative overflow-hidden rounded-full px-8 py-3.5 text-sm font-medium text-white bg-accent transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_50px_-12px_rgba(59,130,246,0.4)]"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -293,7 +266,7 @@ export function Hero() {
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
                 </span>
                 <motion.span
-                  className="absolute inset-0 -z-0 bg-gradient-to-r from-accent/0 via-white/20 to-accent/0"
+                  className="absolute inset-0 -z-0 bg-gradient-to-r from-accent/0 via-white/15 to-accent/0"
                   initial={{ x: '-100%' }}
                   whileHover={{ x: '100%' }}
                   transition={{ duration: 0.6 }}
@@ -302,13 +275,13 @@ export function Hero() {
 
               <motion.a
                 href="#cases"
-                className="group flex items-center gap-3 rounded-full border border-white/10 px-7 py-3.5 text-sm font-medium text-white/60 transition-all duration-500 hover:border-white/30 hover:text-white"
+                className="group flex items-center gap-3 text-sm font-light text-white/40 transition-all duration-500 hover:text-white/70"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
               >
                 {t.hero.secondary}
                 <motion.span
-                  className="h-px w-6 bg-white/20 transition-all duration-300 group-hover:w-10 group-hover:bg-white/60"
+                  className="h-px w-6 bg-white/15 transition-all duration-300 group-hover:w-10 group-hover:bg-white/40"
                   initial={{ width: 24 }}
                   whileHover={{ width: 40 }}
                 />
@@ -319,23 +292,23 @@ export function Hero() {
               variants={buttonVariants}
               initial="hidden"
               animate={isInView ? 'show' : 'hidden'}
-              transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
-              className="mt-14 flex items-center gap-12 border-t border-white/5 pt-8"
+              transition={{ duration: 0.8, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-16 flex items-center gap-12 border-t border-white/5 pt-8"
             >
               {t.hero.stats.map((s, i) => (
                 <motion.div
                   key={s.label}
-                  className="group"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-                  transition={{ duration: 0.5, delay: 0.9 + i * 0.1, ease: "easeOut" }}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+                  transition={{ duration: 0.4, delay: 0.9 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-col"
                 >
-                  <div className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                  <span className="text-2xl font-light tracking-tight text-white sm:text-3xl">
                     {s.value}
-                  </div>
-                  <div className="mt-0.5 text-xs font-light tracking-[0.15em] text-white/20 uppercase">
+                  </span>
+                  <span className="mt-0.5 text-[10px] font-light tracking-[0.1em] text-white/20 uppercase">
                     {s.label}
-                  </div>
+                  </span>
                 </motion.div>
               ))}
             </motion.div>
@@ -349,12 +322,12 @@ export function Hero() {
       />
 
       <motion.div
-        className="pointer-events-none absolute right-10 bottom-10 z-20 hidden text-[10px] font-light tracking-[0.2em] text-white/10 uppercase lg:block"
+        className="pointer-events-none absolute right-10 bottom-10 z-20 hidden text-[10px] font-light tracking-[0.2em] text-white/8 uppercase lg:block"
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 1, delay: 1.2 }}
       >
-        <MousePointer2 className="mx-auto mb-2 h-3.5 w-3.5 opacity-30" />
+        <MousePointer2 className="mx-auto mb-2 h-3 w-3 opacity-30" />
         Scroll
       </motion.div>
     </section>

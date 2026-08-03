@@ -31,8 +31,8 @@ export function Portfolio() {
     <section id="cases" className="relative py-32 sm:py-40 overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-accent/5 blur-[180px]" />
-        <div className="absolute bottom-0 right-0 h-[500px] w-[500px] rounded-full bg-purple-500/5 blur-[160px]" />
-        <div className="absolute top-0 left-0 h-[500px] w-[500px] rounded-full bg-cyan-500/4 blur-[160px]" />
+        <div className="absolute bottom-0 right-0 h-[500px] w-[500px] rounded-full bg-purple-500/4 blur-[160px]" />
+        <div className="absolute top-0 left-0 h-[500px] w-[500px] rounded-full bg-cyan-500/3 blur-[160px]" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
@@ -44,16 +44,16 @@ export function Portfolio() {
             viewport={{ once: true }}
             className="max-w-2xl"
           >
-            <div className="mb-6 inline-flex items-center gap-3">
-              <span className="h-px w-8 bg-white/20" />
-              <span className="text-xs font-light tracking-[0.3em] text-white/30 uppercase">
+            <div className="mb-6 inline-flex items-center gap-4">
+              <span className="h-px w-12 bg-white/20" />
+              <span className="text-xs font-light tracking-[0.3em] text-white/25 uppercase">
                 {t.portfolio.label}
               </span>
             </div>
-            <h2 className="text-4xl font-light leading-[1.1] tracking-[-0.02em] text-white sm:text-5xl lg:text-6xl">
+            <h2 className="text-5xl font-light leading-[1.05] tracking-[-0.03em] text-white sm:text-6xl lg:text-7xl">
               {t.portfolio.title}
             </h2>
-            <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-white/40 sm:text-lg">
+            <p className="mt-4 max-w-lg text-pretty text-base font-light leading-relaxed text-white/30 sm:text-lg">
               {t.portfolio.subtitle}
             </p>
           </motion.div>
@@ -64,7 +64,7 @@ export function Portfolio() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="mb-12 flex flex-wrap gap-2 border-b border-white/5 pb-6"
+          className="mb-14 flex flex-wrap gap-1 border-b border-white/5 pb-6"
         >
           {filters.map((f, i) => (
             <button
@@ -73,7 +73,7 @@ export function Portfolio() {
               className={`group relative px-5 py-2.5 text-sm font-light tracking-wide transition-all duration-500 ${
                 active === i
                   ? 'text-white'
-                  : 'text-white/30 hover:text-white/60'
+                  : 'text-white/25 hover:text-white/50'
               }`}
             >
               {f}
@@ -88,7 +88,7 @@ export function Portfolio() {
           ))}
         </motion.div>
 
-        <motion.div layout className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <motion.div layout className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {filtered.map((item, i) => (
               <motion.div
@@ -98,8 +98,8 @@ export function Portfolio() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{
-                  duration: 0.6,
-                  delay: i * 0.05,
+                  duration: 0.7,
+                  delay: i * 0.06,
                   ease: [0.16, 1, 0.3, 1]
                 }}
                 className={`group relative overflow-hidden rounded-3xl ${
@@ -107,27 +107,25 @@ export function Portfolio() {
                 }`}
                 onMouseEnter={() => setHoveredIndex(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                style={{ perspective: '1200px' }}
               >
                 <motion.div
                   className="relative aspect-[4/3] w-full overflow-hidden bg-[#0a0f1a]"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ transformStyle: 'preserve-3d' }}
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-purple-500/10 opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/8 via-transparent to-purple-500/8 opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
 
                   <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-[#0a0f1a] via-[#0f1728] to-[#0a0f1a]">
                     <div className="relative">
-                      <div className="absolute inset-0 blur-2xl bg-accent/20 rounded-full" />
-                      <div className="relative h-12 w-12 rounded-full border border-accent/20 bg-accent/10 flex items-center justify-center">
-                        <div className="h-2 w-2 rounded-full bg-accent/40 animate-pulse" />
+                      <div className="absolute inset-0 blur-2xl bg-accent/15 rounded-full" />
+                      <div className="relative h-12 w-12 rounded-full border border-accent/15 bg-accent/8 flex items-center justify-center">
+                        <div className="h-2 w-2 rounded-full bg-accent/30 animate-pulse" />
                       </div>
                     </div>
-                    <span className="mt-4 text-2xl font-light tracking-[0.3em] text-white/20">
+                    <span className="mt-4 text-2xl font-light tracking-[0.3em] text-white/15">
                       Soon...
                     </span>
-                    <span className="mt-2 text-sm font-light tracking-[0.15em] text-white/10">
+                    <span className="mt-2 text-sm font-light tracking-[0.15em] text-white/8">
                       {item.title}
                     </span>
                   </div>
@@ -142,7 +140,7 @@ export function Portfolio() {
 
                   <div className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100">
                     <div className="absolute top-0 left-0 h-1/2 w-1/2 bg-gradient-to-br from-white/5 to-transparent blur-2xl" />
-                    <div className="absolute bottom-0 right-0 h-1/2 w-1/2 bg-gradient-to-tl from-purple-500/10 to-transparent blur-2xl" />
+                    <div className="absolute bottom-0 right-0 h-1/2 w-1/2 bg-gradient-to-tl from-purple-500/8 to-transparent blur-2xl" />
                   </div>
                 </motion.div>
 
@@ -150,11 +148,11 @@ export function Portfolio() {
                   className="absolute bottom-0 left-0 right-0 p-8"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.1 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
                 >
-                  <div className="relative flex items-center justify-between">
+                  <div className="relative flex items-end justify-between">
                     <div>
-                      <div className="mb-2 inline-block rounded-full border border-white/10 px-3 py-1 text-xs font-light text-white/50 backdrop-blur-sm transition-colors duration-500 group-hover:border-white/20 group-hover:text-white/70">
+                      <div className="mb-2 inline-block rounded-full border border-white/8 px-3 py-1 text-xs font-light text-white/30 backdrop-blur-sm transition-colors duration-500 group-hover:border-white/15 group-hover:text-white/50">
                         {item.tag}
                       </div>
                       <h3 className="text-2xl font-light tracking-[-0.02em] text-white transition-colors duration-500 group-hover:text-white/90">
@@ -162,11 +160,11 @@ export function Portfolio() {
                       </h3>
                     </div>
                     <motion.div
-                      className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm transition-all duration-500 group-hover:border-white/40 group-hover:bg-white/10"
+                      className="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/5 backdrop-blur-sm transition-all duration-500 group-hover:border-white/30 group-hover:bg-white/10"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <ArrowUpRight className="h-5 w-5 text-white/60 transition-colors duration-500 group-hover:text-white" />
+                      <ArrowUpRight className="h-5 w-5 text-white/40 transition-colors duration-500 group-hover:text-white" />
                     </motion.div>
                   </div>
                 </motion.div>

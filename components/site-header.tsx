@@ -57,16 +57,16 @@ export function SiteHeader() {
       className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4"
     >
       <nav
-        className={`relative flex w-full max-w-6xl items-center justify-between rounded-2xl px-5 py-3.5 transition-all duration-700 sm:px-7 ${
+        className={`relative flex w-full max-w-6xl items-center justify-between rounded-xl px-4 py-2.5 transition-all duration-700 sm:px-6 ${
           scrolled
-            ? 'bg-[#070b14]/80 backdrop-blur-2xl shadow-[0_8px_40px_-16px_rgba(0,0,0,0.9)] border border-white/[0.06]'
-            : 'bg-[#070b14]/40 backdrop-blur-xl border border-white/[0.04] shadow-[0_4px_30px_-12px_rgba(0,0,0,0.3)]'
+            ? 'bg-[#070b14]/60 backdrop-blur-2xl shadow-[0_8px_40px_-16px_rgba(0,0,0,0.8)] border border-white/[0.05]'
+            : 'bg-[#070b14]/30 backdrop-blur-xl border border-white/[0.03]'
         }`}
       >
-        <a href="#home" className="flex items-center gap-2.5 group">
-          <Logo className="h-8 w-8 transition-transform duration-700 group-hover:scale-105" />
-          <span className="text-base font-light tracking-tight text-white/90">
-            AESBAU <span className="text-white/40">Labs</span>
+        <a href="#home" className="flex items-center gap-2 group">
+          <Logo className="h-6 w-6 transition-transform duration-700 group-hover:scale-105" />
+          <span className="text-sm font-light tracking-tight text-white/70">
+            AESBAU <span className="text-white/30">Labs</span>
           </span>
         </a>
 
@@ -77,10 +77,10 @@ export function SiteHeader() {
               <li key={l.href} className="relative">
                 <a
                   href={l.href}
-                  className={`relative block px-4 py-2 text-sm font-light tracking-wide transition-all duration-500 ${
+                  className={`relative block px-3.5 py-1.5 text-xs font-light tracking-wide transition-all duration-500 ${
                     isActive
-                      ? 'text-white/90'
-                      : 'text-white/40 hover:text-white/80'
+                      ? 'text-white/80'
+                      : 'text-white/25 hover:text-white/60'
                   }`}
                 >
                   <span className="relative z-10">{l.label}</span>
@@ -88,7 +88,7 @@ export function SiteHeader() {
                   {isActive && (
                     <motion.span
                       layoutId="activeUnderline"
-                      className="absolute -bottom-0.5 left-1/2 h-[1.5px] w-5 -translate-x-1/2 rounded-full bg-white/80 shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+                      className="absolute -bottom-0.5 left-1/2 h-[1px] w-4 -translate-x-1/2 rounded-full bg-white/60 shadow-[0_0_12px_rgba(255,255,255,0.08)]"
                       transition={{ type: 'spring', duration: 0.6 }}
                     />
                   )}
@@ -101,24 +101,24 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <button
             onClick={toggle}
-            className="relative flex items-center rounded-lg border border-white/8 px-1 py-1 text-xs font-light tracking-wide overflow-hidden hover:border-white/20 transition-colors duration-300"
+            className="relative flex items-center rounded-md border border-white/8 px-1.5 py-1 text-[10px] font-light tracking-wide overflow-hidden hover:border-white/15 transition-colors duration-300"
             aria-label="Switch language"
           >
             <motion.div
-              className="absolute inset-0 rounded-lg bg-white/8"
+              className="absolute inset-0 rounded-md bg-white/6"
               layoutId="langActive"
               transition={{ type: 'spring', duration: 0.5 }}
             />
             <span
-              className={`relative z-10 rounded-md px-2.5 py-1.5 transition-colors duration-300 ${
-                lang === 'ru' ? 'text-white/90' : 'text-white/30'
+              className={`relative z-10 rounded px-2 py-1 transition-colors duration-300 ${
+                lang === 'ru' ? 'text-white/80' : 'text-white/20'
               }`}
             >
               RU
             </span>
             <span
-              className={`relative z-10 rounded-md px-2.5 py-1.5 transition-colors duration-300 ${
-                lang === 'en' ? 'text-white/90' : 'text-white/30'
+              className={`relative z-10 rounded px-2 py-1 transition-colors duration-300 ${
+                lang === 'en' ? 'text-white/80' : 'text-white/20'
               }`}
             >
               EN
@@ -127,17 +127,17 @@ export function SiteHeader() {
 
           <a
             href="#contacts"
-            className="hidden rounded-full bg-white/10 px-5 py-2.5 text-sm font-light text-white/90 transition-all duration-500 hover:bg-white/20 hover:shadow-[0_0_40px_-12px_rgba(255,255,255,0.08)] sm:inline-block"
+            className="hidden rounded-full bg-white/8 px-4 py-1.5 text-xs font-light text-white/70 transition-all duration-500 hover:bg-white/15 hover:text-white/90 sm:inline-block"
           >
             Оставить заявку
           </a>
 
           <button
             onClick={() => setOpen((p) => !p)}
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/8 lg:hidden transition-colors hover:border-white/20 hover:bg-white/5"
+            className="flex h-8 w-8 items-center justify-center rounded-md border border-white/8 lg:hidden transition-colors hover:border-white/15 hover:bg-white/5"
             aria-label="Toggle menu"
           >
-            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            {open ? <X className="h-3.5 w-3.5" /> : <Menu className="h-3.5 w-3.5" />}
           </button>
         </div>
       </nav>
@@ -145,13 +145,13 @@ export function SiteHeader() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -8, scale: 0.98 }}
+            initial={{ opacity: 0, y: -6, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.98 }}
-            transition={{ duration: 0.3 }}
-            className="absolute inset-x-4 top-20 rounded-2xl border border-white/8 bg-[#070b14]/92 backdrop-blur-2xl p-5 shadow-2xl lg:hidden"
+            exit={{ opacity: 0, y: -6, scale: 0.98 }}
+            transition={{ duration: 0.25 }}
+            className="absolute inset-x-4 top-16 rounded-xl border border-white/6 bg-[#070b14]/92 backdrop-blur-2xl p-4 shadow-2xl lg:hidden"
           >
-            <ul className="flex flex-col gap-1">
+            <ul className="flex flex-col gap-0.5">
               {links.map((l) => {
                 const isActive = activeSection === l.id
                 return (
@@ -159,10 +159,10 @@ export function SiteHeader() {
                     <a
                       href={l.href}
                       onClick={() => setOpen(false)}
-                      className={`block rounded-lg px-4 py-3 text-sm font-light tracking-wide transition-all duration-300 ${
+                      className={`block rounded-lg px-4 py-2.5 text-xs font-light tracking-wide transition-all duration-300 ${
                         isActive
-                          ? 'bg-white/5 text-white/90'
-                          : 'text-white/40 hover:text-white/80 hover:bg-white/5'
+                          ? 'bg-white/6 text-white/80'
+                          : 'text-white/25 hover:text-white/60 hover:bg-white/5'
                       }`}
                     >
                       {l.label}
@@ -174,7 +174,7 @@ export function SiteHeader() {
                 <a
                   href="#contacts"
                   onClick={() => setOpen(false)}
-                  className="mt-2 block rounded-full bg-white/10 px-4 py-3 text-center text-sm font-light text-white/90 transition-all duration-300 hover:bg-white/20"
+                  className="mt-1.5 block rounded-full bg-white/8 px-4 py-2.5 text-center text-xs font-light text-white/70 transition-all duration-300 hover:bg-white/15"
                 >
                   Оставить заявку
                 </a>

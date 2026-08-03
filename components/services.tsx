@@ -153,7 +153,7 @@ export function Services() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
           {t.services.items.map((item, i) => {
             const Icon = ICONS[i]
             const isExpanded = expandedIndex === i
@@ -170,10 +170,10 @@ export function Services() {
                   ease: [0.16, 1, 0.3, 1]
                 }}
                 viewport={{ once: true }}
-                className={`relative ${isOdd ? 'lg:mt-12' : ''}`}
+                className={`relative flex ${isOdd ? 'lg:mt-12' : ''}`}
               >
                 <motion.div
-                  className="group relative flex h-full flex-col rounded-3xl border border-white/[0.06] bg-white/[0.025] p-8 transition-all duration-700 hover:-translate-y-2 hover:border-accent/30 hover:bg-white/[0.04] hover:shadow-[0_20px_80px_-20px_rgba(59,130,246,0.08)] sm:p-10"
+                  className="group relative flex w-full flex-col rounded-3xl border border-white/[0.06] bg-white/[0.025] p-8 transition-all duration-700 hover:-translate-y-2 hover:border-accent/30 hover:bg-white/[0.04] hover:shadow-[0_20px_80px_-20px_rgba(59,130,246,0.08)] sm:p-10"
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.4 }}
                   onMouseLeave={() => {
@@ -197,13 +197,15 @@ export function Services() {
                       </span>
                     </div>
 
-                    <h3 className="mt-6 text-xl font-light tracking-[-0.02em] text-white/90 transition-colors duration-700 group-hover:text-white sm:text-2xl">
-                      {item.title}
-                    </h3>
+                    <div className="mt-6 min-h-[70px] sm:min-h-[80px]">
+                      <h3 className="text-xl font-light tracking-[-0.02em] text-white/90 transition-colors duration-700 group-hover:text-white sm:text-2xl">
+                        {item.title}
+                      </h3>
+                    </div>
 
                     <div className="mt-3 h-px w-10 bg-white/10 transition-all duration-700 group-hover:w-14 group-hover:bg-accent/30" />
 
-                    <div className="mt-4 flex-1">
+                    <div className="mt-4 flex-1 min-h-[80px]">
                       <AnimatePresence mode="wait">
                         {isExpanded ? (
                           <motion.div
