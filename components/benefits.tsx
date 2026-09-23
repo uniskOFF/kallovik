@@ -128,7 +128,7 @@ export function Benefits() {
           >
             <div className="mb-6 inline-flex items-center gap-3">
               <span className="h-px w-8 bg-white/20" />
-              <span className="text-xs font-light tracking-[0.3em] text-white/30 uppercase">
+              <span className="font-mono text-xs font-light tracking-[0.3em] text-white/30 uppercase">
                 {t.benefits.label}
               </span>
             </div>

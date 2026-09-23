@@ -16,9 +16,9 @@ export function SiteFooter() {
   ]
 
   const contactItems = [
-    { label: 'Телефон', value: '+7 (999) 123-45-67' },
-    { label: 'Email', value: 'hello@aesbau.dev' },
-    { label: 'Telegram', value: '@aesbau_labs' },
+    { label: t.contact.phoneLabel, value: '+7 (999) 123-45-67' },
+    { label: t.contact.emailLabel, value: 'hello@aesbau.dev' },
+    { label: t.contact.tgLabel, value: '@aesbau_labs' },
   ]
 
   return (
@@ -57,7 +57,7 @@ export function SiteFooter() {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h4 className="text-xs font-light tracking-[0.2em] text-white/20 uppercase">
+            <h4 className="font-mono text-xs font-light tracking-[0.2em] text-white/20 uppercase">
               {t.footer.nav}
             </h4>
             <ul className="space-y-2.5">
@@ -81,7 +81,7 @@ export function SiteFooter() {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h4 className="text-xs font-light tracking-[0.2em] text-white/20 uppercase">
+            <h4 className="font-mono text-xs font-light tracking-[0.2em] text-white/20 uppercase">
               {t.footer.contacts}
             </h4>
             <ul className="space-y-2.5">
@@ -105,8 +105,8 @@ export function SiteFooter() {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h4 className="text-xs font-light tracking-[0.2em] text-white/20 uppercase">
-              Связаться
+            <h4 className="font-mono text-xs font-light tracking-[0.2em] text-white/20 uppercase">
+              {t.nav.contacts}
             </h4>
             <motion.a
               href="#contacts"
@@ -114,7 +114,7 @@ export function SiteFooter() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
             >
-              Оставить заявку
+              {t.nav.cta}
               <svg
                 className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
                 fill="none"

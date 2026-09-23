@@ -140,7 +140,7 @@ export function Services() {
           >
             <div className="mb-6 inline-flex items-center gap-3">
               <span className="h-px w-8 bg-white/20" />
-              <span className="text-xs font-light tracking-[0.3em] text-white/30 uppercase">
+              <span className="font-mono text-xs font-light tracking-[0.3em] text-white/30 uppercase">
                 {t.services.label}
               </span>
             </div>
@@ -157,7 +157,6 @@ export function Services() {
           {t.services.items.map((item, i) => {
             const Icon = ICONS[i]
             const isExpanded = expandedIndex === i
-            const isOdd = i % 2 === 1
 
             return (
               <motion.div
@@ -170,7 +169,7 @@ export function Services() {
                   ease: [0.16, 1, 0.3, 1]
                 }}
                 viewport={{ once: true }}
-                className={`relative flex ${isOdd ? 'lg:mt-12' : ''}`}
+                className="relative flex"
               >
                 <motion.div
                   className="group relative flex w-full flex-col rounded-3xl border border-white/[0.06] bg-white/[0.025] p-8 transition-all duration-700 hover:-translate-y-2 hover:border-accent/30 hover:bg-white/[0.04] hover:shadow-[0_20px_80px_-20px_rgba(59,130,246,0.08)] sm:p-10"
@@ -246,10 +245,10 @@ export function Services() {
                       whileHover={{ x: isExpanded ? 0 : 4 }}
                     >
                       {isExpanded ? (
-                        'Свернуть'
+                        t.services.less
                       ) : (
                         <>
-                          Узнать больше
+                          {t.services.more}
                           <ArrowRight className="h-4 w-4" />
                         </>
                       )}

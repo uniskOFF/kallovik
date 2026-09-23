@@ -24,11 +24,11 @@ const translations = {
     },
     hero: {
       badge: 'Цифровые решения нового поколения',
-      title1: 'Мы строим',
-      title2: 'цифровое будущее',
-      title3: 'вашего бизнеса',
+      title1: 'Сайты и боты,',
+      title2: 'которые продают',
+      title3: 'а не просто эффектно выглядят',
       subtitle:
-        'AESBAU Labs создаёт сайты, Telegram-ботов, автоматизацию и AI-интеграции. Помогаем бизнесу расти и оставаться на шаг впереди.',
+        'AESBAU Labs создаёт сайты, Telegram-ботов, автоматизацию и AI-решения, которые превращают посетителей в клиентов — с первого дня после запуска.',
       primary: 'Оставить заявку',
       secondary: 'Наши проекты',
       stats: [
@@ -46,9 +46,11 @@ const translations = {
       },
     },
     services: {
-      title: 'Чем мы можем помочь вашему бизнесу',
-      subtitle: 'Современные цифровые решения для роста, автоматизации и развития бизнеса.',
+      title: 'Всё, что нужно вашему бизнесу, чтобы расти',
+      subtitle: 'От первого сайта до полной автоматизации — решения, которые окупаются.',
       info: 'Подробнее об услуге',
+      more: 'Узнать больше',
+      less: 'Свернуть',
       label: 'Услуги',
       items: [
         {
@@ -84,7 +86,7 @@ const translations = {
       ],
     },
     benefits: {
-      title: 'Почему современный бизнес выбирает цифровые решения',
+      title: 'Что это даёт вашему бизнесу',
       subtitle: 'Технологии перестали быть роскошью — сегодня это условие выживания и роста.',
       label: 'Почему мы',
       items: [
@@ -97,6 +99,7 @@ const translations = {
     about: {
       title: 'Почему нам доверяют',
       subtitle: 'Мы работаем как технологический партнёр, а не как подрядчик. Погружаемся в задачи клиентов и создаём решения, которые действительно работают.',
+      body: 'За 4 года мы прошли путь от первых лендингов до комплексных цифровых экосистем — сайтов, ботов, автоматизации и AI-решений, которые каждый день работают на бизнес наших клиентов.',
       label: 'О нас',
       items: [
         { title: 'Индивидуальный подход', desc: 'Погружаемся в задачу и предлагаем решение под вас.' },
@@ -144,7 +147,7 @@ const translations = {
       hoursValue: 'Пн–Пт, 10:00–19:00',
     },
     footer: {
-      tagline: 'Строим цифровое будущее вашего бизнеса.',
+      tagline: 'Создаём сайты и продукты, которые продают.',
       rights: 'Все права защищены.',
       nav: 'Навигация',
       contacts: 'Контакты',
@@ -161,11 +164,11 @@ const translations = {
     },
     hero: {
       badge: 'Next-generation digital solutions',
-      title1: 'We build the',
-      title2: 'digital future',
-      title3: 'of your business',
+      title1: 'Websites and bots',
+      title2: 'that sell',
+      title3: 'not just look impressive',
       subtitle:
-        'AESBAU Labs builds websites, Telegram bots, automation and AI integrations. We help businesses grow and stay one step ahead.',
+        'AESBAU Labs builds websites, Telegram bots, automation and AI solutions that turn visitors into customers — from day one after launch.',
       primary: 'Leave a request',
       secondary: 'Our projects',
       stats: [
@@ -183,9 +186,11 @@ const translations = {
       },
     },
     services: {
-      title: 'How we can help your business',
-      subtitle: 'Modern digital solutions for growth, automation and development.',
+      title: 'Everything your business needs to grow',
+      subtitle: 'From your first website to full automation — solutions that pay for themselves.',
       info: 'More about this service',
+      more: 'Learn more',
+      less: 'Collapse',
       label: 'Services',
       items: [
         {
@@ -221,7 +226,7 @@ const translations = {
       ],
     },
     benefits: {
-      title: 'Why modern business chooses digital',
+      title: 'What this means for your business',
       subtitle: 'Technology is no longer a luxury — today it is the condition for growth.',
       label: 'Why choose us',
       items: [
@@ -234,6 +239,7 @@ const translations = {
     about: {
       title: 'Why clients trust us',
       subtitle: 'We work as a technology partner, not just a contractor. We dive into the task and craft a solution that really works.',
+      body: 'Over 4 years we\'ve grown from simple landing pages to complete digital ecosystems — websites, bots, automation and AI solutions that work for our clients\' business every day.',
       label: 'About',
       items: [
         { title: 'Personal approach', desc: 'We dive into the task and craft a solution for you.' },
@@ -281,7 +287,7 @@ const translations = {
       hoursValue: 'Mon–Fri, 10:00–19:00',
     },
     footer: {
-      tagline: 'Building the digital future of your business.',
+      tagline: 'We build websites and products that sell.',
       rights: 'All rights reserved.',
       nav: 'Navigation',
       contacts: 'Contacts',

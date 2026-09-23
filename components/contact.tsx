@@ -74,7 +74,7 @@ export function Contact() {
           >
             <div className="mb-6 inline-flex items-center gap-4">
               <span className="h-px w-12 bg-white/20" />
-              <span className="text-xs font-light tracking-[0.3em] text-white/25 uppercase">
+              <span className="font-mono text-xs font-light tracking-[0.3em] text-white/25 uppercase">
                 {t.contact.label}
               </span>
             </div>
