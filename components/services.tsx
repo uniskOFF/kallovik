@@ -153,7 +153,7 @@ export function Services() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3 items-stretch">
           {t.services.items.map((item, i) => {
             const Icon = ICONS[i]
             const isExpanded = expandedIndex === i
@@ -197,7 +197,7 @@ export function Services() {
                     </div>
 
                     <div className="mt-6 min-h-[70px] sm:min-h-[80px]">
-                      <h3 className="text-xl font-light tracking-[-0.02em] text-white/90 transition-colors duration-700 group-hover:text-white sm:text-2xl">
+                      <h3 className="text-xl font-light tracking-[-0.02em] text-white/90 transition-colors duration-700 group-hover:text-white sm:text-2xl hyphens-auto break-words">
                         {item.title}
                       </h3>
                     </div>

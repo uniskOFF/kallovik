@@ -138,7 +138,7 @@ export function Benefits() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
           {t.benefits.items.map((item, i) => {
             const Icon = ICONS[i]
 
@@ -174,7 +174,7 @@ export function Benefits() {
                     </div>
 
                     <div className="mt-6 min-h-[80px] sm:min-h-[100px]">
-                      <h3 className="text-xl font-light tracking-[-0.02em] text-white/90 transition-colors duration-700 group-hover:text-white sm:text-2xl">
+                      <h3 className="text-xl font-light tracking-[-0.02em] text-white/90 transition-colors duration-700 group-hover:text-white sm:text-2xl hyphens-auto break-words">
                         {item.title}
                       </h3>
                     </div>
