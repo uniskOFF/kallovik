@@ -127,7 +127,7 @@ export function SiteHeader() {
 
           <a
             href="#contacts"
-            className="hidden rounded-full bg-white/8 px-4 py-1.5 text-xs font-light text-white/70 transition-all duration-500 hover:bg-white/15 hover:text-white/90 sm:inline-block"
+            className="hidden rounded-full bg-white/8 px-4 py-1.5 text-xs font-medium text-white/70 transition-all duration-500 hover:bg-white/15 hover:text-white/90 sm:inline-block"
           >
             {t.nav.cta}
           </a>
@@ -174,7 +174,7 @@ export function SiteHeader() {
                 <a
                   href="#contacts"
                   onClick={() => setOpen(false)}
-                  className="mt-1.5 block rounded-full bg-white/8 px-4 py-2.5 text-center text-xs font-light text-white/70 transition-all duration-300 hover:bg-white/15"
+                  className="mt-1.5 block rounded-full bg-white/8 px-4 py-2.5 text-center text-xs font-medium text-white/70 transition-all duration-300 hover:bg-white/15"
                 >
                   {t.nav.cta}
                 </a>

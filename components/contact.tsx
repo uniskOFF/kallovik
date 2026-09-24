@@ -78,7 +78,7 @@ export function Contact() {
                 {t.contact.label}
               </span>
             </div>
-            <h2 className="text-5xl font-light leading-[1.05] tracking-[-0.03em] text-white sm:text-6xl lg:text-7xl">
+            <h2 className="text-5xl font-normal leading-[1.05] tracking-[-0.03em] text-white sm:text-6xl lg:text-7xl">
               {t.contact.title}
             </h2>
           </motion.div>
@@ -101,7 +101,7 @@ export function Contact() {
                 <div className="flex items-center gap-4">
                   <span className="h-px w-8 bg-white/20" />
                   <span className="text-xs font-light tracking-[0.2em] text-white/20 uppercase">
-                    Свяжитесь с нами
+                    {t.contact.directLabel}
                   </span>
                 </div>
                 <div className="space-y-2 text-sm font-light text-white/20">

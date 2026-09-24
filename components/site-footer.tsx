@@ -110,7 +110,7 @@ export function SiteFooter() {
             </h4>
             <motion.a
               href="#contacts"
-              className="group inline-flex items-center gap-2.5 rounded-full border border-white/10 px-5 py-2.5 text-sm font-light text-white/40 transition-all duration-500 hover:border-white/25 hover:bg-white/5 hover:text-white/70 hover:shadow-[0_0_40px_-12px_rgba(255,255,255,0.03)]"
+              className="group inline-flex items-center gap-2.5 rounded-full border border-white/10 px-5 py-2.5 text-sm font-medium text-white/40 transition-all duration-500 hover:border-white/25 hover:bg-white/5 hover:text-white/70 hover:shadow-[0_0_40px_-12px_rgba(255,255,255,0.03)]"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
             >

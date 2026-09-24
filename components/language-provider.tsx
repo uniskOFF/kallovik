@@ -26,7 +26,7 @@ const translations = {
       badge: 'Цифровые решения нового поколения',
       title1: 'Сайты и боты,',
       title2: 'которые продают',
-      title3: 'а не просто эффектно выглядят',
+      title3: 'не просто выглядят',
       subtitle:
         'AESBAU Labs создаёт сайты, Telegram-ботов, автоматизацию и AI-решения, которые превращают посетителей в клиентов — с первого дня после запуска.',
       primary: 'Оставить заявку',
@@ -93,7 +93,7 @@ const translations = {
         { title: 'Рост продаж', desc: 'Автоматизация воронки и новые каналы привлечения клиентов.' },
         { title: 'Репутация', desc: 'Современный образ компании, которому доверяют.' },
         { title: 'Экономия времени', desc: 'Рутинные процессы работают без вашего участия.' },
-        { title: 'Масштабирование', desc: 'Продукт растёт вместе с вашим бизнесом.' },
+        { title: 'Масштаби\u00ADрование', desc: 'Продукт растёт вместе с вашим бизнесом.' },
       ],
     },
     about: {
@@ -131,6 +131,7 @@ const translations = {
       namePlaceholder: 'Введите ваше имя',
       selectMethod: 'Выберите способ связи',
       selectMethodHint: 'Выберите способ связи',
+      directLabel: 'Или напишите напрямую',
       contactPlaceholder: 'Введите контактные данные',
       telegram: 'Telegram',
       whatsapp: 'WhatsApp',
@@ -166,7 +167,7 @@ const translations = {
       badge: 'Next-generation digital solutions',
       title1: 'Websites and bots',
       title2: 'that sell',
-      title3: 'not just look impressive',
+      title3: 'not just look good',
       subtitle:
         'AESBAU Labs builds websites, Telegram bots, automation and AI solutions that turn visitors into customers — from day one after launch.',
       primary: 'Leave a request',
@@ -271,6 +272,7 @@ const translations = {
       namePlaceholder: 'Enter your name',
       selectMethod: 'Choose contact method',
       selectMethodHint: 'Choose contact method',
+      directLabel: 'Or reach out directly',
       contactPlaceholder: 'Enter contact details',
       telegram: 'Telegram',
       whatsapp: 'WhatsApp',

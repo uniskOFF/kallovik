@@ -206,7 +206,7 @@ export function Hero() {
                 initial="hidden"
                 animate={isInView ? 'show' : 'hidden'}
                 transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-[clamp(3rem,9vw,6.5rem)] font-light leading-[1.05] tracking-[-0.04em]"
+                className="text-[clamp(3rem,9vw,6.5rem)] font-semibold leading-[1.05] tracking-[-0.04em]"
               >
                 <span className="bg-gradient-to-r from-[#3b82f6] via-[#8b5cf6] to-[#22d3ee] bg-[length:300%_300%] bg-clip-text text-transparent animate-gradient-shine">
                   {t.hero.title2}
@@ -303,7 +303,7 @@ export function Hero() {
                   transition={{ duration: 0.4, delay: 0.9 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   className="flex flex-col"
                 >
-                  <span className="text-2xl font-light tracking-tight text-white sm:text-3xl">
+                  <span className="text-2xl font-medium tracking-tight text-white sm:text-3xl">
                     {s.value}
                   </span>
                   <span className="mt-0.5 text-[10px] font-light tracking-[0.1em] text-white/20 uppercase">

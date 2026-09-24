@@ -132,7 +132,7 @@ export function Benefits() {
                 {t.benefits.label}
               </span>
             </div>
-            <h2 className="max-w-3xl text-4xl font-light leading-[1.1] tracking-[-0.02em] text-white sm:text-5xl lg:text-6xl">
+            <h2 className="max-w-3xl text-4xl font-normal leading-[1.1] tracking-[-0.02em] text-white sm:text-5xl lg:text-6xl">
               {t.benefits.title}
             </h2>
           </motion.div>
@@ -174,7 +174,7 @@ export function Benefits() {
                     </div>
 
                     <div className="mt-6 min-h-[80px] sm:min-h-[100px]">
-                      <h3 className="text-xl font-light tracking-[-0.02em] text-white/90 transition-colors duration-700 group-hover:text-white sm:text-2xl hyphens-auto break-words">
+                      <h3 className="text-xl font-normal tracking-[-0.02em] text-white/90 transition-colors duration-700 group-hover:text-white sm:text-2xl hyphens-auto break-words">
                         {item.title}
                       </h3>
                     </div>

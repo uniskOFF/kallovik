@@ -144,7 +144,7 @@ export function Services() {
                 {t.services.label}
               </span>
             </div>
-            <h2 className="text-4xl font-light leading-[1.1] tracking-[-0.02em] text-white sm:text-5xl lg:text-6xl">
+            <h2 className="text-4xl font-normal leading-[1.1] tracking-[-0.02em] text-white sm:text-5xl lg:text-6xl">
               {t.services.title}
             </h2>
             <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-white/40 sm:text-lg">
@@ -197,7 +197,7 @@ export function Services() {
                     </div>
 
                     <div className="mt-6 min-h-[70px] sm:min-h-[80px]">
-                      <h3 className="text-xl font-light tracking-[-0.02em] text-white/90 transition-colors duration-700 group-hover:text-white sm:text-2xl hyphens-auto break-words">
+                      <h3 className="text-xl font-normal tracking-[-0.02em] text-white/90 transition-colors duration-700 group-hover:text-white sm:text-2xl hyphens-auto break-words">
                         {item.title}
                       </h3>
                     </div>

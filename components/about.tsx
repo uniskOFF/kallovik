@@ -45,7 +45,7 @@ export function About() {
                 {t.about.label}
               </span>
             </div>
-            <h2 className="max-w-2xl text-5xl font-light leading-[1.05] tracking-[-0.03em] text-white sm:text-6xl lg:text-7xl">
+            <h2 className="max-w-2xl text-5xl font-normal leading-[1.05] tracking-[-0.03em] text-white sm:text-6xl lg:text-7xl">
               {t.about.title}
             </h2>
           </motion.div>
@@ -129,7 +129,7 @@ export function About() {
               viewport={{ once: true }}
               className="flex flex-col"
             >
-              <span className="text-4xl font-light tracking-tight text-white sm:text-5xl">
+              <span className="text-4xl font-medium tracking-tight text-white sm:text-5xl">
                 {stat.value}
               </span>
               <span className="mt-1 text-sm font-light tracking-wide text-white/20">

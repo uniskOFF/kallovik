@@ -50,7 +50,7 @@ export function Portfolio() {
                 {t.portfolio.label}
               </span>
             </div>
-            <h2 className="text-5xl font-light leading-[1.05] tracking-[-0.03em] text-white sm:text-6xl lg:text-7xl">
+            <h2 className="text-5xl font-normal leading-[1.05] tracking-[-0.03em] text-white sm:text-6xl lg:text-7xl">
               {t.portfolio.title}
             </h2>
             <p className="mt-4 max-w-lg text-pretty text-base font-light leading-relaxed text-white/30 sm:text-lg">
